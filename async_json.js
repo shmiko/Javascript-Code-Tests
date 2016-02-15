@@ -3,6 +3,6 @@ function readJSONSync(filename, callback){
     if(err) return callback(err)
     callback(null,JSON.parse(res))
   })
-}
+};
 
 readJSONSync(js_promises_test.js);
