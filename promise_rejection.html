@@ -1,0 +1,98 @@
+<h1>output</h1>
+<div id="log-container">
+</div>
+
+<script>
+  // logging function so we can avoid console.log and alert
+  function log(varargs) {
+      var args = Array.prototype.slice.call(arguments, 0);
+      var message = args.join(" ");
+      var container = document.getElementById('log-container');
+      var messageDiv = document.createElement('div');
+      messageDiv.innerHTML = message;
+      container.appendChild(messageDiv);
+  }
+  function Promise(fn) {
+    var state = 'pending';
+    var value;
+    var deferred = null;
+
+    function resolve(newValue) {
+      if(newValue && typeof newValue.then === 'function') {
+        newValue.then(resolve, reject);
+        return;
+      }
+      state = 'resolved';
+      value = newValue;
+
+      if(deferred) {
+        handle(deferred);
+      }
+    }
+
+    function reject(reason) {
+      state = 'rejected';
+      value = reason;
+
+      if(deferred) {
+        handle(deferred);
+      }
+    }
+
+    function handle(handler) {
+      if(state === 'pending') {
+        deferred = handler;
+        return;
+      }
+
+      var handlerCallback;
+
+      if(state === 'resolved') {
+        handlerCallback = handler.onResolved;
+      } else {
+        handlerCallback = handler.onRejected;
+      }
+
+      if(!handlerCallback) {
+        if(state === 'resolved') {
+          handler.resolve(value);
+        } else {
+          handler.reject(value);
+        }
+
+        return;
+      }
+
+      var ret = handlerCallback(value);
+      handler.resolve(ret);
+    }
+
+    this.then = function(onResolved, onRejected) {
+      return new Promise(function(resolve, reject) {
+        handle({
+          onResolved: onResolved,
+          onRejected: onRejected,
+          resolve: resolve,
+          reject: reject
+        });
+      });
+    };
+
+    fn(resolve, reject);
+  }
+
+  function doSomething() {
+      return new Promise(function (resolve, reject) {
+          var reason = "uh oh, something bad happened";
+          reject(reason);
+      });
+  }
+
+  doSomething().then(function (firstResult) {
+      // wont get in here
+      log("first result:", firstResult);
+  }, function(error) {
+      log("got an error:", error);
+  });
+
+</script>
