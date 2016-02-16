@@ -20,3 +20,5 @@ function count(){
 for (var x of count()) {
   console.log("x is ", x);
 }
+
+//check into prototypes branch
