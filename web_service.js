@@ -32,3 +32,7 @@ if (window.Promise) {
 } else {
   console.log('Promise not available');
 }
+
+
+
+//result is Chuck Norris doesn't read books. He stares them down until he gets the information he wants.
