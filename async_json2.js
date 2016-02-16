@@ -14,3 +14,8 @@ function readJSONSync(filename, callback){
 //conflates the input with the output
 //doesn't work with control flow primitives
 //doesn't handle errors
+var greetingPromise = sayHello();
+greetingPromise.then(function (greeting) {
+    console.log(greeting);    // 'hello world’
+}, function (error) {
+    console.error('uh oh: ', error);   // 'uh oh: something bad happened’c
