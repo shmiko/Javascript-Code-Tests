@@ -10,3 +10,5 @@ for (var x of count()) {
 }
 
 count(7);
+
+count(77);
