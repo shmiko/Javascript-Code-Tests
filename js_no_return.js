@@ -11,4 +11,4 @@ for (var x of count()) {
 
 count(7);
 
-count(777);
+count(7777);
