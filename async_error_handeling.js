@@ -4,5 +4,5 @@ greetingPromise
     .then(function (greeting) {
         console.log(greeting);
     }, function(error) {
-        console.error('error is ', error);
+        console.error('error is this ', error);
     });
