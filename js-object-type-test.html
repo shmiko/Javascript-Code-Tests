@@ -1,4 +1,10 @@
 <script type="text/javascript">
+(function() {
+  'use strict';
+
+window.functions = {};
+
+
 var mysticalAnimal1 = {};
 mysticalAnimal1.type = 'dragon';
 console.log(mysticalAnimal1);
@@ -49,11 +55,11 @@ var testType2 =  function(str){
 testType2(animalMystical);
 //'Result is nothing'
 
-  var testType3 =  function(str){
+  var functions.testType3 =  function(str){
 	 console.log("testType3 ",str);
 	 return str;
   };
-  testType3(animalMystical);
+  functions.testType3(animalMystical);
 
 
   function myFunc(theObject) {
@@ -90,6 +96,8 @@ console.log(newtest);
 
 var newtest2 = notStrict();
 console.log(newtest2);
+
+}());
 </script>
 
 results:
