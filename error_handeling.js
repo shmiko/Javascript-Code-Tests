@@ -4,5 +4,5 @@ try {
     greeting = addExclamation(greeting);
     console.log(greeting);
 } catch(error) {
-    console.error('uh oh: ', error); 
+    console.error('error: ', error); 
 }
