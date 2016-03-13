@@ -23,4 +23,19 @@ console.log(fs[1]());
 console.log(fs[2]());
 
 //returns 3,3,3
+function logStuff (userData) {
+    if ( typeof userData === "string")
+    {
+        console.log(userData);
+    }
+    else if ( typeof userData === "object")
+    {
+        for (var item in userData) {
+            console.log(item + ": " + userData[item]);
+        }
+    }
+};
+
+
+
 

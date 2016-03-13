@@ -1,8 +1,4 @@
-​(function() {
-  'use strict';
-
-
-// generic logStuff function that prints to console​
+​// generic logStuff function that prints to console​
 ​function logStuff (userData) {
     if ( typeof userData === "string")
     {
@@ -13,10 +9,8 @@
         for (var item in userData) {
             console.log(item + ": " + userData[item]);
         }
-​
     }
-​
-}
+};
 ​
 // global variable​
 ​var allUserData;
@@ -37,4 +31,3 @@ getInput ({name:"Rich", speciality:"JavaScript"}, logStuff);
 ​// speciality: JavaScript
 
 
-}());
