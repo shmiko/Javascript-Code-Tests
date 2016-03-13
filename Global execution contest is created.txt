@@ -1,0 +1,32 @@
+Global execution contest is created
+At line 11 executed buildFunctions2() creates new execution context.
+Her code hits the line 5 the IIFE will executes and creates new execution context and “j” will be initialize with ‘0’ for the first time. And after execution IIFE ExContext will popped off from stack.
+Then i++ changes I value to 1 then again new IIFE ExContext created with J=1 and popped off after execution
+Then again I will be 2 and new IIFE Excontext created with j=2 and popped off from stack.
+Now finally closer variable i=3, and if JS engine creates new variable ‘j’ for 3 times then j=0,j=1,j=2. If it’s overrides existing ‘j’ in memory then “j” final value should be 2. (I’m not clear about how JS engine behaviors in this scenario, will it create 3 new “j”s or overrides existing please clarify. )
+Now when line 12,13,14 runs as it’s a function execution it will creates new execution context on top of last IIFE and when console.log(j) executes as j is not defined inside the function it will look on its outer execution context on scope chain, i.e last IIFE ExContext where j=2. In this case all console.log(j) statements should print 2. But it’s not happening, how its working under the hood, where my missing, please explain.
+
+
+
+
+Hi Suman, the steps you have are correct. To clarify, at step 6 as the for loop iterates through the code, the execution of the anonymoys function is being assigned to the array (arr), which happens to be, assigning the returned function to the array.
+
+(function(j){
+return function(){
+console.log(j);
+}
+} (i) );
+
+Each iteration creates an execution context that remembers the value of 'j'. So in the first execution context j = 0, the second j = 1, and the third j = 2.
+
+So the array now has
+
+[function(){console.log(j); , function(){console.log(j); , function(){console.log(j);]
+
+When you invoke fs2[0], your asking the javascript engine to execute the returned function:
+
+function(){
+console.log(j);
+}
+
+So what's the value of J? Well, thanks to closures javascript remembers that during the first run through the loop, the execution context set the value of j = 0, and so forth.
