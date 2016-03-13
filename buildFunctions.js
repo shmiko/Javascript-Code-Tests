@@ -12,5 +12,5 @@ var fs = buildFunctions();
 
 console.log(fs[0]());
 console.log(fs[1]());
-fs[2]();
+console.log(fs[2]());
 
