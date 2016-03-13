@@ -1,5 +1,4 @@
-​// generic logStuff function that prints to console​
-​function logStuff (userData) {
+function logStuff(userData) {
     if ( typeof userData === "string")
     {
         console.log(userData);
@@ -11,23 +10,9 @@
         }
     }
 };
-​
-// global variable​
-​var allUserData;
-
-allUserData = [];
-
-​// A function that takes two parameters, the last one a callback function​
-​function getInput (options, callback) {
-    allUserData.push (options);
-    callback (options);
-​
+function getInput(options, callback) {
+	var allUserData = [];
+    allUserData.push(options);
+    callback(options);
 }
-​
-​// When we call the getInput function, we pass logStuff as a parameter.​
-​// So logStuff will be the function that will called back (or executed) inside the getInput function​
-getInput ({name:"Rich", speciality:"JavaScript"}, logStuff);
-​//  name: Rich​
-​// speciality: JavaScript
-
-
+getInput({name:"Rich", speciality:"JavaScript"}, logStuff);
