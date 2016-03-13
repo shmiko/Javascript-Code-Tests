@@ -5,4 +5,4 @@ try {
     console.log(greeting);
 } catch(error) {
     console.error('error: ', error); 
-}
+};
