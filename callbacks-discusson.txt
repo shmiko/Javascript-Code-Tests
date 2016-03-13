@@ -1,0 +1,641 @@
+Brian Smith 
+ 
+Brian Smith
+View Profile
+· 13 days ago
+Can someone explain how the following callback function, which I've got from the Internet works?
+function fullName(firstName, lastName, callback){
+console.log("My name is " + firstName + " " + lastName);
+callback(lastName);
+}
+
+
+var greeting = function(ln){
+console.log('Welcome Mr. ' + ln);
+};
+
+
+fullName("Jackie", "Chan", greeting);
+
+
+
+Upon running, it gives the following result:
+
+My name is Jackie Chan
+Welcome Mr. Chan
+
+
+
+Thanks.
+
+Hide 2 replies ·  Like  (1 like) · Follow (4 followers) · 
+Brian Smith · 13 days ago · 
+I guess this is what happens:
+There are two levels of invocation:
+
+
+(1) The fullName() invocation causes that its three parameters move to the function fullName() three parameter variables. 
+Thus, it moves the greeting variable containing the anonymous function to the callback variable, which becomes (kind of) named function with the name callback. 
+At the same time it moves "Jackie" to firstName variable, and "Chan" to lastName variable.
+
+
+(2) Then the callback() invocation invokes the anonymous function, which is inside the greeting variable, which is inside the callback variable. 
+Then the parameter variable of the callback() invocation, i.e., lastName, enters into the ln parameter variable of the anonymous function. 
+Thus, ln variable will contain lastName variable, which has the value of Chan.
+In addition, invoking the anonymous function, outputs the result, which includes ln variable containing lastName variable with the value of Chan.
+
+
+
+Am I right?
+
+Rob Wilson · 13 days ago · 
+@Brian Yes, you're right. Functions are 1st class citizens in JS.
+
+
+​
+
+REPLY
+ 
+Brian Smith 
+· 14 days ago
+What is the difference between (1) "tellMeWhenDone(function(){", and (2) "callback()"?
+Hi Anthony,
+
+1. Does "callback()" invoke the callback parameter inside the "function tellMeWhenDone(callback){"? and
+
+2. Does the anonymous callback function inside "tellMeWhenDone(function(){" simply replace the callback parameter? Also, why there is no "function" keyword before "tellMeWhenDone"? What is the difference between "tellMeWhenDone" and "function tellMeWhenDone"?
+
+I don't understand more advanced callback functions. Callback function is the most confusing subject that I have seen. And it is used a lot, especially in Node.js.
+
+Can you make a more detailed video for callback functions, or can you devote a whole section to callback functions, i.e., from simple to advanced?
+
+Thanks.
+
+Hide 4 replies ·  Like  · Follow  (3 followers) · 
+Saul Solano · 13 days ago · 
+Hey Brian, the anonymous function is an argument being passed to the tellMeWhenDone function. Within the tellMeWhenDone function, the anonymous function is referred to as callback. After Tony sets his two variables he then invokes the callback (or anonymous) function with callback();
+
+There's no 'function' keyword before tellMeWhenDone because he's not defining a function, Tony's invoking (executing) the function and passing it an anonymous function for it to execute/callback.
+
+As Tony explained, callback functions are functions that are executed by another function when it's finished. In the tellMeWhenDone function all it has to do is set two variables, var a = 1000; var b = 2000; and when it's completed, it calls/invokes callback (anonymous function). That's it.
+
+Brian Smith · 13 days ago · 
+Hi Saul,
+
+Thank you for your help. Regarding the anonymous function being passed to the tellMeWhenDone function, I like Tony to show us how it is done under the hood. It seems the anonymous function, which is an argument inside the tellMeWhenDone invocation is being passed to the (callback) argument inside the tellMeWhenDone function rather than to the tellMeWhenDone function itself.
+
+Does it go to the tellMeWhenDone function itself? If so, it is hard to understand how a function can enter into another function; functions are not variables.
+
+Is the (callback) just an empty variable, then the anonymous function is being passed to it?
+
+I couldn't see any use for var a = 1000; and var b = 2000; I deleted both and I got the same result. Is there any use for these two variables?
+
+Brian Smith · 13 days ago · 
+I guess I figured out what is going on. There are two levels of invocation:
+
+(1) The tellMeWhenDone invocation, (which has the anonymous function as its parameter) invokes the Function tellMeWhenDone (which has an empty callback variable as its parameter). This causes that the anonymous function to be transferred to the empty callback variable.
+
+(2) Then the callback(); invocation, invokes the callback variable which contains the anonymous function, i.e., invokes the anonymous function. This causes the "I am done!" message to be displayed.
+
+Saul Solano · 13 days ago · 
+You got it!
+
+
+​
+
+REPLY
+ 
+Steve Seeriram 
+· 23 days ago
+Callback looking for closure
+Hi Anthony
+
+in this code:
+
+function callbackFunction(callback){
+
+var one = 2000;
+
+var two = 3000;
+
+callback();
+
+}
+
+callbackFunction(function(){
+
+console.log(one + two);
+
+})
+
+it returns an error
+
+"Uncaught ReferenceError: one is not defined"
+
+Wouldn't the callback function use closure and have access to the variables one and two inside of callbackFunction?
+
+thanks very much
+
+Hide 4 replies ·  Like  · Follow  (5 followers) · 
+Gkumaraguru Gnanaguru · 23 days ago · 
+I believe the function definition you are calling back ("callback") is in the outer lexical environment, the "callbackFunction" is NOT in its scope chain and so the variables one and two are not resolved. For the closures to work, the "callback" function definition should be within the lexical environment of "callbackFunction". Try the below code:
+
+function callbackFunction(callback){
+
+var one = 2000;
+
+var two = 3000;
+
+setTimeout(function(){
+
+console.log(one + two);
+
+},2000);
+
+}
+
+callbackFunction();
+
+John Grow · 23 days ago · 
+Hi Steve, I took the liberty of embellishing your code a bit to hopefully make it a bit clearer. This code shows executing a callback function and also a closure. I added some comments, and also some additional console.log() calls so that the execution order is apparent.
+
+function callbackFunction(callback){
+
+var one = 2000;
+
+var two = 3000;
+
+var enclosedFunction = function(){ // <-- this function is enclosed by callbackFunction
+
+console.log(one + two);
+
+};
+
+callback(); // <-- run the external function passed in as a parameter to callbackFunction()
+
+return enclosedFunction; // <-- the closure is returned before the main function exits
+
+}
+
+console.log("Done"); // <-- main function is now done since we are now outside it
+
+function myCallback(){
+
+console.log("Callback gets invoked from inside callbackFunction()");
+
+}
+
+var x = callbackFunction(myCallback); // <-- call and run callBackFunction()
+
+x(); // <-- now run the closure function (that was returned at the end of callbackFunction)
+
+
+
+Hopefully this example will help!
+
+vishnu pradeep · 23 days ago · 
+For the closure to work, you need to access the variable from inside the function, before it's done executing. Here your variables are accessed from outside. Here, the closure is not even valid. In order for the callback to execute, it should be like this.
+
+function callbackFunction(callback){
+
+var one = 2000;
+
+var two = 3000;
+
+callback(one, two);
+
+}
+
+callbackFunction(function(one, two){
+
+console.log(one + two);
+
+})
+
+Steve Seeriram · 22 days ago · 
+ahh okay these make sense.
+
+
+
+
+​
+
+REPLY
+ 
+Aime Yann Mbabazi 
+· 2 months ago
+Callback confusion
+Hello Antony.
+
+I Have a simple question: I came across this function in a book:
+
+function newText(){
+
+var newTitle=document.getElementById('1name');
+
+newTitle.innerHTML='Doctor';}
+
+window.onload=newText;
+
+My 1st question is: I understand that the above function is a kind of a callback function. Am i right? If not how is it called?
+
+My 2nd question; why the newtext doesn't have parenthesis when it is invoked on the last line as shown here: window.onload=newText;
+
+why not writing window.onload=newText(); in order to invoke the function.
+
+Thanks
+
+Hide 3 replies ·  Like  · Follow  (3 followers) · 
+Anthony Alicea · 2 months ago · 
+Hi Aime,
+
+Remember that functions are objects. They are 'first class'. This line:
+
+window.onload=newText;
+
+is setting the onload property of window equal to the function, not the results of the function. So we don't invoke the function here, but rather 'onload' will be a reference to the function itself.
+
+This is an event handler. When the page finishes loading the browser, behind the scenes, will basically do this:
+
+window.onload();
+
+This could sort of be seen as a callback. More accurately it is an event handler.
+
+Thanks, and thanks for taking the course!
+
+Ryan Scharfer · 2 months ago · 
+I'll try to help you out here, but I am open for any and all criticism. : )
+
+
+
+A callback function is typically a function that is passed as an argument to another function. Because newText is the only function we are dealing with here, I wouldn't call it a callback function. It is a function that the Javascript engine will call once the load event fires. The load event fires when all of the objects are in the DOM, and all of the images, scripts, links, and subframes have finished loading. More on the onload function here. It's like saying "hey JS engine, call this function when the load event fires." Granted, callback functions are also used to have the engine do something once an event occurs, but I don't think newText in this example is technically a callback because it is not being passed into another function as an argument.
+The newText does not have parentheses because we don't want to immediately call it. Putting parenthesis after a function reference calls that function. Instead, we are basically telling the engine to take this function, newText, and call it for us when the load event fires, but not before.
+Aime Yann Mbabazi · 2 months ago · 
+Thanks Anthony & Ryan to get back to me so quickly. I have now a better understanding of how that function works
+
+
+​
+
+REPLY
+ 
+Jay Prakash Singh 
+· 2 months ago
+Callback Confusion
+Hello Anthony,
+
+Thanks for the wonderful course. My journey so far is amazing. I never expected this much fun with JS.
+
+Though i had a question.
+
+The explanation you gave for call back function was quiet confusing to me.. or may be it was just me. But i thought i must discuss so that i am clear at my mind.
+
+You said(i mean i understood from the video) that call back functions are executed after the calling functions finishes there execution.
+
+Consider the below example
+
+function A(B){
+
+console.log("Before - This is calling function");
+
+B();
+
+console.log("After - This is calling function")
+
+}
+
+A(function(){
+
+console.log("This is being called")
+
+});
+
+When i run this it calls A() then calls B() then comes back to A() and finishes execution.
+
+Actual Output:
+
+Before - This is calling function
+
+This is being called
+
+After - This is calling function
+
+I thought it should work like A() then B() and then execution over.
+
+Expected Output
+
+Output:
+
+Before - This is calling function
+
+After - This is calling function
+
+This is being called
+
+Can you please comment if what i see is correct ?
+
+Regards,
+
+Jay
+
+Hide 2 replies ·  Like  · Follow  (3 followers) · 
+Julie Myers · 2 months ago · 
+Hi Jay,
+
+In general a callback is when you pass a function into another function, and the passed in function gets called at some point in the future. When that passed in function gets called can vary. For example:
+
+var passIn = function() {
+console.log("I am the passed in function");
+}
+
+function b(func){
+console.log("just because");
+func();
+console.log("I am last");
+}
+
+b(passIn);
+
+RESULTS:
+"just because"
+"I am the passed in function"
+"I am last"
+
+A callback is really a coding pattern.
+
+There are many examples when the function that gets passed in will be the last thing that gets called, but it doesn't have to be called last to be using the callback pattern.
+
+Callbacks are used a lot in asynchronous javaScript coding and can follow a different path to execution then the example above. That path can include the event loop.
+
+Hope this helped.
+
+Bob Crav · 2 months ago · 
+1) function A(B){
+
+console.log("Before - This is calling function");
+
+B();
+
+console.log("After - This is calling function")
+
+}
+
+2) A(function(){
+
+console.log("This is being called")
+
+});
+
+In your code above whenever the JS engine sees a function invocation using '()' it will immediately create a Execution Context for that function (regardless of what code is "beneath" it or after it) and execute whatever is in the function body or in other words the code inside the '{}'.
+
+So when you invoke A on line 2 an execution context will be created for function A. Then during the creation phase of that execution context the parameter variable B will be placed in memory (which is a function object). Then during the execution phase of function A this will run first:
+
+console.log("Before - This is calling function");
+
+Then in the next line function B will be invoked. So a new execution context for B will be created and this line will be executed: console.log("This is being called"). Also note that when you pass in the anonymous function to A the parameter variable B references that anonymous function passed in since a function is an object and objects are passed by reference.
+
+Then after B is done executing it will be popped off the execution stack and finally the JS engine will run whatever is left in function A which is console.log("After - This is calling function");
+
+
+​
+
+REPLY
+ 
+Rick Kirkham 
+· 3 months ago
+The example of a callback given in the video is:
+function tellMeWhenDone(callback) {
+// stuff omitted
+callback();
+}
+But the function named "callback" is just one more line inside tellMeWhenDone and it happens to be the last line. But that's not what a callback is. A genuine callback for tellMeWhenDone would be a function that executes AFTER tellMeWhenDone is COMPLETELY finished and its execution context is gone. But in this example, the execution context of tellMeWhenDone will still be alive while "callback" is running. If I'm wrong, please explain how. Thanks.
+
+Be the first and add your reply ·  Like (4 likes) · Follow  (2 followers) · 
+ 
+Farhad 
+· 4 months ago
+Anthony, if we have a closure in the case of setTimeout(callback), why this changes the output?
+
+function sayHiLater() {
+
+var greeting = 'Hi!'; setTimeout(function() { console.log(greeting);
+
+}, 3000);
+
+greeting = 'lol';
+
+}
+
+sayHiLater();
+
+Hide 8 replies ·  Like  (1 like) · Follow (4 followers) · 
+Bob Crav · 4 months ago · 
+What do you mean by "why this changes the output"?
+
+Julie Myers · 4 months ago · 
+Hi Farhad,
+
+I ran your code and when sayHiLater() is executed the results are "lol" NOT "Hi!". I assume that is what you mean by why this changes the output.
+
+I think what we would expect is that the value of greeting, when the setTimeOut method runs, is to be "Hi!", but it is "lol". I did some research and I believe it is because when the browser is waiting the 3 seconds for the setTimeout method to run the browser goes off and does other things. In this case it changes the value of greeting to "lol" and then runs the setTimeOut method when the 3 seconds are up. Thus, the value of greeting is "lol" not "Hi!".
+
+Here is a website with more info:
+http://javascript.info/tutorial/events-and-timing-...
+
+I am not positive of the answer, so someone else with more experience will need to tell you for sure.
+
+Julie
+
+Jobe Barrs · 4 months ago · 
+Hi Farhad,
+
+I'm assuming you're asking why your greeting var value is "lol" and not "Hi!". From what I understand it's because the function expression
+
+"(function() {
+
+console.log(greeting);
+
+}"
+
+Isn't executed in till the setTimeout(.., 3000) method is completed.
+
+Once the sayHiLater execution context is created it looks something like this.
+
+1. var greeting = 'hi'.
+
+2. setTimeout(..., 3000);
+
+3. var greeting = 'lol'. (overriding the original 'hi' value).
+
+4. sayHiLater is completed and is popped off the execution stack.
+
+5. After 3 seconds the callback function expression runs.
+
+(function() {
+
+console.log(greeting);
+
+}
+
+6. Since the "greeting" variable doesn't exist on that execution context variable environment it goes up the scope chain and finds greeting = "lol" due to closure. Hope this helps.
+
+Bob Crav · 4 months ago · 
+Ohh ok, now I understand what you meant by the change in output. So it changes to "lol" since when the timeout event is placed on the event queue, the rest of the code in your JS file will continue to run. Which means in your case that the line greeting = 'lol' will override your original value of greeting which was 'Hi!'. Therefore, when the callback function of setTimeout is invoked, its closure will be pointing to the free variables (greeting) of its parent function (which is sayHiLater() since the callback function of setTimeout is lexically sitting inside of sayHiLater, so that is its parent function). Therefore, you will get a value of 'lol' since the greeting variable was overwritten.
+
+Now here is a twist. If the rest of your code in the JS file took more that 3000 ms to run. Let's assume that it took 4000ms. Then you when you console.log(greeting) in the callback function of the setTimeout event it will print out 'Hi!'. This happens because your setTimeout method was set to 3000ms. So no matter what happens this callback will be called 3000ms. So if your code takes 4000ms and never gets to the greeting='lol' then when you console.log(greeting) in your callback function it will print 'Hi!'.
+
+Farhad · 4 months ago · 
+Thanks for your answers :) I wanted to understand why Anthony called this example a closure because in this case the variable doesn't get enclosed in the execution context of the callback function.
+Bob Crav · 4 months ago · 
+The greeting variable is enclosed in the execution context of sayHiLater(). What happens is that first an execution context is created for sayHiLater(). Then during the sayHiLater execution, for the setTimeout an event will be placed on the event queue, where a callback passed into that event will be called 3000 ms later. Now sayHiLater is done executing and the execution context is popped off the stack and when the callback to the setTimeout method runs it has access to the greeting variable even if sayHiLater execution context was popped of the execution stack.
+
+Farhad · 4 months ago · 
+thanks Bob Crav.
+
+is there an alternative way of outputting 'Hi!' instead of 'lol' after 3s other than with bind?
+
+function sayHiLater() {
+
+var greeting = 'Hi!';
+
+setTimeout(function(greeting) {
+
+return function() {
+
+console.log(greeting);
+
+}();
+
+}.bind(this,greeting), 3000);
+
+greeting = 'lol';
+
+}
+
+sayHiLater();
+
+Bob Crav · 4 months ago · 
+Not really sure why you are using bind. Bind is only used when you want the this keyword in a function to point to a certain object. You do not use the this keyword in the IIF you return from the setTimeout event, so there is no point of using bind. Also I don't think there is a way to print 'Hi!' instead of 'lol' after 3s since the callback function to setTimeout will look for greeting in the scope of where it lexically sits (where in this case it is sayHiLater) so from closures and the scope it will always print "lol" since you ovewrite greeting in sayHiLater.
+
+Now what you could do is in this global scope have a greeting variable: var greeting = 'Hi!'. Then inside the function that is returned from the callback function to setTimeout say console.log(this.greeting). 
+
+
+​
+
+REPLY
+ 
+Bob Crav 
+· 5 months ago
+Hi Anthony! So the function expression that is passed into the setTimeout function is placed on the event queue and is only run when everything is done running in the JS file? More specifically in this case it is when sayHiLater and setTimeout are done running?
+
+Hide 4 replies ·  Like  · Follow  (3 followers) · 
+Anthony Alicea · 5 months ago · 
+Hi Bob,
+
+Not exactly. The event queue holds events, and functions can be run in response to an event appearing in the queue.
+
+So the function expression passed to setTimeout will be run when the timeout completion event is placed on the queue and processed (i.e. after any other code on the execution stack is complete).
+
+Thanks!
+
+Bob Crav · 5 months ago · 
+Ohh ok! That makes sense! Can also explain to me when the sayHiLater finishes? Is it popped of the execution stack when the 3000 ms wait from the setTimeout function is over or is does the sayHiLater function finish after the function expression passed to setTimeout will run?
+
+King Swami · 4 months ago · 
+at 4:20 of lecture 18 Anthony explains this.
+
+Bob Crav · 4 months ago · 
+Arite thanx!
+
+
+​
+
+REPLY
+ 
+Allen 
+· 5 months ago
+recommendation?
+hi tony, do you have any reference or knows a site where I can keep on practicing these concepts and fundamental? like maybe solving a short problem or something? I can understand so far all the things you said in these course , but when I face something like a problem, I get blank . maybe you could help me to be like you.
+
+Hide 3 replies ·  Like  (3 likes) · Follow (4 followers) · 
+Alexander Brown · 5 months ago ·
+Hey Allen,
+
+If you're looking for code challenges try www.codewars.com for a start. There are lots of others. Here's a blog post I found a while back that lists a bunch of them, including codewars:
+
+http://codecondo.com/coding-challenges/?utm_conten...
+
+Supay Supay · 5 months ago · 
+I am way so far, but thanks, this is amazing!
+
+Allen · 5 months ago · 
+Hi guys , Thanks alexander for the recommendation and yes I saw others recommeded it. I can confirm to anyone else that codewars is good, it really let's you think and you are face with different problems. you can do it on the side, like maybe on the morning while grabbing a coffee just to keep your skills intact and be train everyday.
+
+
+​
+
+REPLY
+ 
+Shilble 
+· 5 months ago
+visual representation
+Hi Tony,
+
+Like your previous videos can you show what is happening behind, like Global execution contex ...
+
+Hide 1 reply ·  Like  (2 likes) · Follow  (2 followers) · 
+Tomas Perez · 3 months ago · 
+I agree with Shilble. In this case a visual representation of the execution stack will be very helpful. I tried to do it myself, but I'm confused when I get to the first invocation of the function 'tellMeWhenDone'. This is the code I was trying to visualize:
+
+function tellMeWhenDone(callback) {
+callback( );
+}
+tellMeWhenDone(function( ) {
+console.log(‘I am done!’);
+});
+tellMeWhenDone(function( ) {
+console.log(‘I finished too!’);
+});
+
+So, first the global execution context is created, which creates memory space for the function 'tellMeWhenDone' and the variable 'callback'. Then, the 'tellMeWhenDone' function gets invoked and a new execution context is created. The only thing I see it could be placed into its own memory space in the variable environment is the anonymous function passed as a callback parameter. So, then, and here is where I got my mental "diarrhea", 'tellMeWhenDone' invokes the callback function, which should create a new execution context before 'tellMeWhenDone' is finished. Could you explain the process for me?. It will be very helpful to understand. Thanks. 
+
+
+​
+
+REPLY
+ 
+Marin Mohanadas 
+· 5 months ago
+About setTimeout
+(function(){ console.info(1); setTimeout(function(){console.info(2);},1000); setTimeout(function(){console.info(3);},0); console.info(4); }());
+
+This function returns outputs like 1,4,3 and 2.
+
+My question is why 4 displayed before 3?
+
+Can anyone explain me!
+
+Hide 1 reply ·  Like  · Follow  (2 followers) · 
+Anthony Alicea · 5 months ago · 
+Hi Marin,
+
+Because its asynchronous. Even though your setTimeout is set to zero seconds, the function is still a callback for a process external to the executing code.
+
+So what happens in the case of '3' is that setTimeout immediately puts an event in the event queue that it is done...however the event loop doesn't respond to the event in the queue until all other code has completed running (thus the '4', which is the last line of code of the function).
+
+Take another look at Lecture 18, that describes exactly what is happening. 'setTimeout' is a process happening outside the JavaScript engine itself, but rather provided by the browser.
+
+Thanks, and thanks for taking the course!
+
+
+​
+
+REPLY
+ 
+Brendan Boyd 
+· 6 months ago
+JQuery the weird parts?
+How about making another course as a follow up to this one called JQuery the weird parts.
+
+Hide 1 reply ·  Like  (2 likes) · Follow  (2 followers) · 
+Timothy Myers · 6 months ago · 
+jQuery doesn't have any weird parts! You take that BACK! ;)
