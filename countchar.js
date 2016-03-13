@@ -11,7 +11,6 @@ function countChar(str1,str2){
 //console.log(countChar("kingdomKlanKlubK", "k"));
 // → 4
 
-
 function countBs(str){
 	// var count = 0;
 	// for (var i = 0; i < str.length; i++){
