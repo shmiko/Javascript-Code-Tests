@@ -54,6 +54,9 @@ var areaOfARectangle = function(length, width){
     // return the area variable
     return area;
 };
+var testArea = areaOfARectangle(4,5);
+console.log(testArea); //should be 20
+
 
 // 10. `sumPlusProduct`,
     //set sum function and multiply function to equal variable, used within return statement
@@ -75,7 +78,7 @@ var areaOfARectangle = function(length, width){
       return multiply(start,2);
     };
     var perimeterOfARectangleResult = perimeterOfARectangle(15,10);
-    console.log(perimeterOfARectangleResult); //175 which is 150 + 25
+    console.log(perimeterOfARectangleResult); //should be 300
 
 
 // 12. `areaOfACircle`
@@ -88,37 +91,48 @@ var areaOfACircle = function(rad){
   return Math.PI * multiply(rad,rad);
 };
 var areaOfACircleTestCase = areaOfACircle(10); 
-console.log(areaOfACircleTestCase);
+console.log(areaOfACircleTestCase); //should be 314.1592653589793
 
 // 13. `slopeOfAline` 
 //use previous subtract functions to determin the result and return answer using divide
 // Which of the four functions will you need to solve this prompt?
 var slopeOfALine = function(arr1,arr2){
-  var x = subtract(arr1[0],arr1[1]);
-  var y = subtract(arr2[0],arr2[1]);
+  var x = subtract(arr1[1],arr1[0]);
+  var y = subtract(arr2[1],arr2[0]);
   return divide(y,x);
 };
 //test
-var slopeOfALineCase = slopeOfALine([5, 10],[1,7]); 
-console.log(slopeOfALineCase);
+var slopeOfALineCase = slopeOfALine([4,6],[5,3]); 
+console.log(slopeOfALineCase); //should be -1
 
 // 14. `pythagorean` 
 // Which of the four functions will you need to solve this prompt?
 //use multiple function for initial calcs then use sum and multiply results to compare
+var trueOrFalse;
 var pythagorean = function(sideOne, sideTwo, sideThree){
-  var a = multiply(sideOne,sideOne);
-  var b = multiply(sideTwo,sideTwo);
-  if (sum(a,b) === multiply(sideThree,sideThree)){
-    return true;
-  } else if (sum(a,b) !== multiply(sideThree,sideThree)){
-    return false;
+  //console.log(sideOne, sideTwo, sideThree, 'is sideOne, sideTwo, sideThree')
+  var array = Array.prototype.slice.call(arguments);
+  array = array.sort();
+  var a = multiply(array[0],array[0]);
+  var b = multiply(array[1],array[1]);
+  
+  if (sum(a,b) === multiply(array[2],array[2])){
+    trueOrFalse = true;
+    //console.log(trueOrFalse);
+    //return trueOrFalse;
+  } else if (sum(a,b) !== multiply(array[2],array[2])){
+    trueOrFalse = false;
+    //console.log(trueOrFalse);
+    //return trueOrFalse;
   }
+  return trueOrFalse;
+  
 };
 //test pos and neg results
 var testPythagoreanPass = pythagorean(3, 4, 5); 
 var testPythagoreanFail = pythagorean(5, 9, 10);
-console.log(testPythagoreanPass);
-console.log(testPythagoreanFail);
+console.log(testPythagoreanPass); //should pass
+console.log(testPythagoreanFail); //should fail
 
 // 15. `modulo`
 //use modulus
@@ -167,10 +181,10 @@ var tipCalculator = function(cost, service){
     } else if (service === "good!") {
         finalTotal = sum(multiply(divide(18,100), cost),cost);
       return finalTotal;
-    } else if (service === "poor"){
+    } else if (service === "poor :("){
         finalTotal = sum(multiply(divide(12,100),cost),cost);
         return finalTotal;
-    } else if (service === "fantastic"){
+    } else if (service === "fantastic!"){
         finalTotal = sum(multiply(divide(22,100),cost),cost);
         return finalTotal;
     }
@@ -179,20 +193,25 @@ var tipGoodTest = tipCalculator(10,"good!");
 console.log(tipGoodTest);
 var tipOkayTest = tipCalculator(10,"okay");
 console.log(tipOkayTest);
-var tipPoorTest = tipCalculator(10,"poor");
+var tipPoorTest = tipCalculator(10,"poor :(");
 console.log(tipPoorTest);
-var tipFantasticTest = tipCalculator(10,"fantastic");
+var tipFantasticTest = tipCalculator(10,"fantastic!");
 console.log(tipFantasticTest);
       
 // 21. `celsiusToFahrenheit`: (tempurature * 9/5) + 32
-
+// var slopeOfALine = function(arr1,arr2){
+// var x = subtract(arr1[1],arr1[0]);
+// var y = subtract(arr2[1],arr2[0]);
+//   return divide(y,x);
+// };
 // How can you assemble your `sum`, `multiply`, and `divide` functions to solve the prompt?
 var celsiusToFahrenheit = function(temp){
   //use all 3 functions in one line
   return sum(multiply(temp,divide(9,5)),32);
+  //return slopeOfALine([5,temp],[9,32]);
 }
 var testCelsiusToFahrenheit = celsiusToFahrenheit(15);
-console.log(testCelsiusToFahrenheit);
+console.log('cel to far is ',testCelsiusToFahrenheit); //answr should be 59, it is
 
 // 22. `fahrenheightToCelcius`(tempurature - 32) * 5/9
 
@@ -202,7 +221,7 @@ var fahrenheightToCelcius = function(temp){
   return multiply(subtract(temp,32),divide(5,9));
 }
 var testFahrenheightToCelcius = fahrenheightToCelcius(59);
-console.log(testFahrenheightToCelcius);
+console.log(testFahrenheightToCelcius); //answer should be 15, it is
 
 // 23. Refactor your earlier functions to be built in a functional pattern if they haven't already.
   // `perimeterOfARectangle`
@@ -234,110 +253,181 @@ console.log('receiptsArray is ',receiptsArray);
 // 24. calculateFinalTotal
 var calculateFinalTotal = function(arr){
     var subtotal = 0;
+    var finalTotalsArray = [];
     for (var i  = 0; i < arr.length; i++){
-      console.log(arr[i].cost, arr[i].serviceRating);
-      if (arr[i].serviceRating === "okay"){
-        subtotal =  sum(multiply(divide(15,100), arr[i].cost),arr[i].cost);
-        console.log(subtotal);
-      } else if (arr[i].serviceRating === "good!") {
-        subtotal += sum(multiply(divide(18,100), arr[i].cost),arr[i].cost);
-        console.log('good is ',subtotal);
-      } else if (arr[i].serviceRating === "poor :("){
-        subtotal +=  sum(multiply(divide(12,100), arr[i].cost),arr[i].cost);
-        console.log('poor is ',subtotal);
-      } else if (arr[i].serviceRating === "fantastic"){
-        subtotal +=  sum(multiply(divide(22,100), arr[i].cost),arr[i].cost);
-        console.log(subtotal);
-      }
-        console.log(subtotal);
-      
+      // console.log(arr[i].cost, arr[i].serviceRating);
+      // if (arr[i].serviceRating === "okay"){
+      //   subtotal =  sum(multiply(divide(15,100), arr[i].cost),arr[i].cost);
+      //   console.log(subtotal);
+      // } else if (arr[i].serviceRating === "good!") {
+      //   subtotal += sum(multiply(divide(18,100), arr[i].cost),arr[i].cost);
+      //   console.log('good is ',subtotal);
+      // } else if (arr[i].serviceRating === "poor :("){
+      //   subtotal +=  sum(multiply(divide(12,100), arr[i].cost),arr[i].cost);
+      //   console.log('poor is ',subtotal);
+      // } else if (arr[i].serviceRating === "fantastic"){
+      //   subtotal +=  sum(multiply(divide(22,100), arr[i].cost),arr[i].cost);
+      //   console.log(subtotal);
+      // }
+      //   console.log(subtotal);
+        //finalTotalsArray.push
+      //refactoring
+        var cost = arr[i].cost;
+        var serviceRating = arr[i].serviceRating;
+        var finalTotal = tipCalculator(cost,serviceRating);
+        //push to array and return array
+        var newFinalCalcObj = {};
+        newFinalCalcObj.cost = cost;
+        newFinalCalcObj.serviceRating = serviceRating;
+        newFinalCalcObj.finalTotal = finalTotal;
+        finalTotalsArray.push(newFinalCalcObj);
     }
-    return subtotal;
+    return finalTotalsArray;
 };
 
-var testCalcFinal = calculateFinalTotal([ { cost: 29, serviceRating: 'good!' }, //18% = 34.22
+var testCalcFinal1 = calculateFinalTotal([ { cost: 29, serviceRating: 'good!' }, //18% = 34.22
   { cost: 25, serviceRating: 'good!' },  //18% = 29.5
   { cost: 28, serviceRating: 'poor :(' }, //12% = 31.36
   { cost: 28, serviceRating: 'poor :(' }, //12% = 31.36
   { cost: 32, serviceRating: 'poor :(' } ]); //12% = 35.84
-console.log(testCalcFinal); //34.22 + 29.5 + 31.36 + 31.36 + 35.84 = 162.28 correct
+var testCalcFinal = calculateFinalTotal(receiptsArray); //12% = 35.84  
+console.log('testCalcFinal is ',testCalcFinal); //34.22 + 29.5 + 31.36 + 31.36 + 35.84 = 162.28 correct
+
+
+
+
+
+function updateFriendsCollectionCheck (friendListArr, friendArg) {
+    var bExists = false;
+    if (friendListArr.indexOf(friendArg) === -1) {
+        //friendListArr.push(friendArg);
+        console.log('New friendListArr collection is : ' + friendListArr);
+        bExists = false;
+    } else if (friendListArr.indexOf(friendArg) > -1) {
+        bExists = true;
+        console.log(friendArg + ' already exists in the friendListArr collection.');
+    }
+    return bExists;
+};
+
+var friendsList = ['Wendy','Jack','Lilia','Paul','Glen','Ross','John','Lucy'];
+var generatedFriend;
+function generateFriend(arr){
+  //generatedFriend = arr[Math.floor(Math.random() * arr.length)];
+  generatedFriend = arr[arr.length - 1];
+  //friendsList.splice(generatedFriend, 1);
+  friendsList.pop();
+  //console.log('inside generateFriend func - friendsList array is now', friendsList, ' because we removed this freind', generatedFriend);
+  return generatedFriend;
+};
 
 // DO NOT TOUCH use these to pass to test your `costSplitter function.
 var friends = ['Albrey', 'Bianca', 'Preston', 'Mo'];
 var costOfMeal = 148.34
+
+
 // 25. costSplitter
+var friendSubTotal = 0;
+var calculateFinalTip = function(arr){
+    friendSubTotal = 0;
+    //this function has taken 1 array from initial object, use specific properties to generate tip as friend subtotal
+    if (arr.rating === "okay"){
+      friendSubTotal =  sum(multiply(divide(15,100), arr.cost),arr.cost);
+    } else if (arr.rating === "good!") {
+      friendSubTotal += sum(multiply(divide(18,100), arr.cost),arr.cost);
+    } else if (arr.rating === "poor :("){
+      friendSubTotal +=  sum(multiply(divide(12,100), arr.cost),arr.cost);
+    } else if (arr.rating === "fantastic!"){
+      friendSubTotal +=  sum(multiply(divide(22,100), arr.cost),arr.cost);
+    }
+    //console.log('friend and tip is ',arr.friend + "," + friendSubTotal);
+    return arr.friend + "," + friendSubTotal;
+};
 //This will create the friends array for the costSplitter function, 
 //the array will have friends name and the cost of the meal as well as the service to know what tip to calculate.
 var friendsCostMaker = function(num){
   //declare empty array
   var friendsCosts = [];
-  //declare list of potential friends
-  var friendsList = ['Wendy','Jack','Lilia','Paul','Glen','Ross','John','Lucy'];
-  var sorted_arr = friendsList.slice().sort();
   //declare list of services
   var serviceRating = ['good!', 'okay', 'fantastic!', 'poor :(']
   //build up list of generated friends so as not to duplicate entries
+  //as we splice and remove form initial array we will build up new array of unique friends
   var listOfFriends = [];
-  var newFriendsList = [];
-  var sorted_arr2 = newFriendsList.slice().sort();
-  var arrIsEmpty = false;
-  for (var i = 0; i < num; i++){
-    //declare empty object exist within array
+  for (var i = 0; i < num; i++){     
+	 //push num new friends into new array using specific function to splice and return data
+	 listOfFriends.push(generateFriend(friendsList));
+  }
+  //empty array to push ito final object
+  friendsCosts = [];
+  for (var k = 0; k < listOfFriends.length; k++){
+    //final object
     var friendAndCost = {};
-    //generate random service from list
-    var rating = serviceRating[Math.floor(Math.random() * serviceRating.length)];
-    //generate random friends from list
-    //use friendsList the first time only, check if newFriendsList is empty
-      var friend = sorted_arr[Math.floor(Math.random() * sorted_arr.length)];
-      console.log('newFriendsList.length is zero',newFriendsList.length, 'friend is ',friend)
-      
-      //friend = newFriendsList[Math.floor(Math.random() * newFriendsList.length)];
-      //console.log('newFriendsList.length is not zero  - now gen friend form new list',newFriendsList.length, 'friend is ',friend )
-
-    //push friend to listOfFriends array then we can use this to check if generated name pre exists
-    listOfFriends.push(friend);
-    
-    //now create new list of available friends without the one generated
-    for (var j = 0; j < listOfFriends.length; j++){
-      console.log('j listOfFriends friend is ',listOfFriends[j]);
-      var changeFriendList = listOfFriends[j];
-      //if (friendsList[j] === friend){
-      //if(newFriendsList.indexOf(friend) !== 0){
-        //now check that the new array doesn't already have the old freind
-        if (newFriendsList.length != 0 && newFriendsList.length < 6){
-          console.log('newFriendsList.length is ',newFriendsList.length)
-          //for (var k = 0; k < newFriendsList.length; k++){
-            //console.log('newFriendsList k friend is ',newFriendsList);
-            if(newFriendsList.indexOf(friend) !== 0){
-            //if (newFriendsList[j] !== friend){
-              newFriendsList.push(changeFriendList);
-            }
-          //}
-        } else {
-          newFriendsList.push(changeFriendList);
-        }
-      //}
-    };
-    console.log('orig friendsList is ',friendsList)
-    console.log('new FriendsList is ',newFriendsList)
-    //generate random cost
+    //var to capture index
+		var changeFriendList = listOfFriends[k];
+		//get cost
     var cost = Math.floor(Math.random() * 5 + 20);
+    //get rating
+    var rating = serviceRating[Math.floor(Math.random() * serviceRating.length)];
     //assign each object property a value from random generators
     friendAndCost.cost = cost;
-    friendAndCost.friend = friend;
+    friendAndCost.friend = changeFriendList;
     friendAndCost.rating = rating;
     //push object data to array
     friendsCosts.push(friendAndCost);
   }
-  //console.log('friendsCosts is ',friendsCosts);
   return friendsCosts;
 };
-
+//run this to generate unique data for the final sprint - we need to pass in an array
+//this function will generate that array with, friend,cost and service type
 var generateFriendsCosts = friendsCostMaker(5);
 console.log('generateFriendsCosts is ',generateFriendsCosts);
 
-
-var costSplitter = function(arr){
-
+var costSplitter = function(arrFriends){
+  var costSplitFriendsArray = [];
+  //loop through unique array of friends and their dinner costs without tips
+  for (var i  = 0; i < arrFriends.length; i++){
+    //create new object for final result
+    var costSplitFriendsObj = {};
+    //console.log('arrFriends[i] is ',arrFriends[i]);
+    //call calculateFinalTip passing in ist array based on loop index
+    calculateFinalTip(arrFriends[i]);
+    //assign values returned from function to each object property
+    costSplitFriendsObj.name = arrFriends[i].friend;
+    costSplitFriendsObj.cost = friendSubTotal
+    //push properties and values into array
+    costSplitFriendsArray.push(costSplitFriendsObj);
+  }  
+  return costSplitFriendsArray;
 };
+//test
+var testCostSplitter = costSplitter([ { cost: 23, friend: 'Lucy', rating: 'good!' },
+  { cost: 24, friend: 'John', rating: 'good!' },
+  { cost: 20, friend: 'Ross', rating: 'good!' },
+  { cost: 20, friend: 'Glen', rating: 'poor :(' },
+  { cost: 23, friend: 'Paul', rating: 'fantastic!' } ]); 
+console.log('Split total cost by friends are ',testCostSplitter); 
+//result is Split total cost by friends are  [ { name: 'Lucy', cost: 27.14 },
+//  { name: 'John', cost: 28.32 },
+//  { name: 'Ross', cost: 23.6 },
+//  { name: 'Glen', cost: 22.4 },
+//  { name: 'Paul', cost: 28.06 } ]
+
+
+// 26. advancedPythagoreanCheck
+
+var advancedPythagoreanCheck = function(int1,int2,int3){
+  //I refactored the original PythagoreanCheck to be more flexible
+  //using global var
+  pythagorean(int1,int2,int3);
+  return trueOrFalse;
+};
+
+//tests
+var truthy = advancedPythagoreanCheck(3, 4, 5);
+console.log(truthy);
+var alsoTruthy = advancedPythagoreanCheck(5, 3, 4);
+console.log(alsoTruthy);
+var falsy = advancedPythagoreanCheck(3, 4, 6);
+console.log(falsy);
+
 }());
