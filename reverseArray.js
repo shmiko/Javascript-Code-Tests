@@ -1,7 +1,7 @@
 var reverseArray = function(arr){
 	var reversedArray = [];
-	arr.sort();
-	for (var i = arr.length - 1; i > -1; i--){
+	arr.sort();//not required as we are not expecting array to be in order
+	for (var i = arr.length - 1; i >= 0; i--){
 		reversedArray.push(arr[i]);
 	}
 	return reversedArray;
