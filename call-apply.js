@@ -25,7 +25,7 @@ logName.apply(person, ['en', 'es']);
 
 (function(lang1, lang2) {
 
-    console.log('Logged: ' + this.getFullName());
+    log('Logged: ' + this.getFullName());
     console.log('Arguments: ' + lang1 + ' ' + lang2);
     console.log('-----------');
     
