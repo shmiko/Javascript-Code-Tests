@@ -309,7 +309,7 @@ function nameChanger(oldName) {
     // Your code goes here!
     finalName = finalName[0].toUpperCase() + finalName.substr(1,finalName.length).toLowerCase();
     finalName = finalName.split(" ");
-    finalName[1] = finalName[1][0].toUpperCase() + finalName[1].substr(1,finalName[1].length);
+    finalName[1] = finalName[1].toUpperCase();
     finalName = finalName.join(" ");
     // Don't delete this line!
     return finalName;
