@@ -314,6 +314,11 @@ function nameChanger(oldName) {
     // Don't delete this line!
     return finalName;
 };
+var locationArray = [];
+for (job in work_obj.jobs){
+  var newLocation = work_obj.jobs[job].location;
+  locationArray.push(newLocation);
+}
 
 
 
