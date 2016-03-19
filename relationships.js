@@ -207,3 +207,67 @@ var example2 = function() {
     console.log("Ran the example");
 }
 example2();
+
+
+var weirdObject = {
+    "property": "Time for an astronomy lesson!",
+    "property1": "Cameron's minor in college was astronomy",
+    "property-2": "The 4 Galilean largest moons of Jupiter are:",
+    "property 3": "Io, Ganymede, Callisto, Europa",
+    "property$": "Saturn's moon Enceladus has liquid water ocean under its icy surface",
+    " property": "The Sun contains 99.87% of the mass of the entire solar system",
+    "property()": "There are 5 dwarf planets in our solar system:",
+    "property[]": "Pluto, Ceres, Eris, Haumea, Makemake",
+    "8property": "Mars has two tiny moons: Phobos and Deimos"
+};
+
+// property
+var dotNotation0 = true;
+var bracketNotation0 = true;
+console.log(weirdObject.property1);
+// property1
+var dotNotation1 = true;
+var bracketNotation1 = true;
+
+// property-2
+var dotNotation2 = false;
+var bracketNotation2 = true;
+
+// property 3
+var dotNotation3 = false;
+var bracketNotation3 = true;
+
+// property$
+var dotNotation4 = true;
+var bracketNotation4 = true;
+
+// *space*property
+var dotNotation5 = false;
+var bracketNotation5 = true;
+
+// property()
+var dotNotation6 = false;
+var bracketNotation6 = true;
+
+// property[]
+var dotNotation7 = false;
+var bracketNotation7 = true;
+
+// 8property
+var dotNotation8 = false;
+var bracketNotation8 = true;
+
+
+var s = "audacity";
+
+var udacityizer = function(s) {  
+    // Right now, the variable s === "audacity"
+    // Manipulate s to make it equal to "Udacity"
+    // Your code goes here!
+    s = s[0].toUpperCase  + s.substr(1,s.length-1);
+    
+    return s;
+};
+
+// Did your code work? The line below will tell you!
+console.log(udacityizer(s));
