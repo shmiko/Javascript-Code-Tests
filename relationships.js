@@ -273,10 +273,12 @@ var udacityizer = function(s) {
     // Right now, the variable s === "audacity"
     // Manipulate s to make it equal to "Udacity"
     // Your code goes here!
-    s = s[0].toUpperCase;
-    var t = s.substr(1,s.length-1);
-    
-    return s + t;
+    // var len = s.length;
+     s = s[1].toUpperCase();
+     var t = s.slice(2);
+    //s = s[1].toUpperCase() + s.slice(2);
+    var result = s + t;
+    return t;
 };
 
 // Did your code work? The line below will tell you!
