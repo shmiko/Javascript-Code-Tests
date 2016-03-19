@@ -196,3 +196,14 @@ if (true) {
     console.log(outsideExample);
 }
 console.log(outsideExample);
+
+example1();
+function example1() {
+    console.log("Ran the example");
+}
+
+
+var example2 = function() {
+    console.log("Ran the example");
+}
+example2();
