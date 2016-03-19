@@ -291,3 +291,29 @@ function incrementLastArrayElement(_array)  {
     newArray.push(lastNumber + 1);
     return newArray;
 }
+
+
+
+
+function nameChanger(oldName) {
+    var finalName = oldName;
+    var names = oldName.split(" ");
+    names[1] = names[1].toUpperCase();
+    names[0] = names[0].slice(0,1).toUpperCase() + names[0].slice(1).toLowerCase();
+    finalName = names.join(" ");
+    return finalName;
+}
+
+function nameChanger(oldName) {
+    var finalName = oldName;
+    // Your code goes here!
+    finalName = finalName[0].toUpperCase() + finalName.substr(1,finalName.length).toLowerCase();
+    finalName = finalName.split(" ");
+    finalName[1] = finalName[1][0].toUpperCase() + finalName[1].substr(1,finalName[1].length);
+    finalName = finalName.join(" ");
+    // Don't delete this line!
+    return finalName;
+};
+
+
+
