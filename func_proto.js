@@ -23,6 +23,18 @@ Person.prototype.getFormalFullName = function() {
 
 console.log(john.getFormalFullName());
 
+function Person2(name){
+  this.name = name;
+}
+
+var johnny = new Person2('John');
+console.log(johnny);
+
+Person2.prototype.greet = function(otherName){
+  return "Hi " + otherName + ", my name is " + this.name;
+}
+
+console.log(johnny.greet('long'));
 
 
 
