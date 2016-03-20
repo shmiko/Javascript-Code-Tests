@@ -50,16 +50,16 @@ function isLessThanZero (num) {
 
 isGreaterThanZero([1, 2, 3]);
 
-function negative(x) {
-    return x < 0;
-}
-function positive(x) {
-    return x > 0;
-}
-var nonzero = or(negative, positive);
-console.log(nonzero(-5));
-console.log(nonzero(0));
-console.log(nonzero(5));
+// function negative(x) {
+//     return x < 0;
+// }
+// function positive(x) {
+//     return x > 0;
+// }
+// var nonzero = or(negative, positive);
+// console.log(nonzero(-5));
+// console.log(nonzero(0));
+// console.log(nonzero(5));
 
 
 // function and(p1, p2) {
