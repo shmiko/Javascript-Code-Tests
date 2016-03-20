@@ -34,7 +34,7 @@ Person2.prototype.greet = function(otherName){
   return "Hi " + otherName + ", my name is " + this.name;
 }
 
-console.log(johnny.greet('long'));
+console.log(johnny.greet('long hong'));
 
 
 
