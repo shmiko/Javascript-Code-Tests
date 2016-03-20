@@ -62,18 +62,51 @@ console.log(nonzero(0));
 console.log(nonzero(5));
 
 
-function and(p1, p2) {
-    return function(x) {
-        return p1(x) && p2(x);
-    }
+// function and(p1, p2) {
+//     return function(x) {
+//         return p1(x) && p2(x);
+//     }
+// }
+// function not(p) {
+//     return function(x) {
+//         return !p(x);
+//     }
+// }
+
+
+// [1,2,3].some(function(x) { return x > 5; }) // => false: no elts are > 5
+// [1,2,3].some(function(x) { return x > 2; }) // => true: some elts are > 3
+// [].some(function(x) { return true; });      // => false: always false for []
+// See Also
+// Array.every(), Array.filter(), Array.forEach()
+
+var superman = {
+    name: "Superman",
+    strength: "Super",
+    heroism: true
+};
+
+
+function isSuperStrong (character) {
+    return character.strength === "Super";
 }
-function not(p) {
-    return function(x) {
-        return !p(x);
-    }
+
+function isNotSuperStrong (character) {
+    return character.strength !== "Super";
 }
 
+function isHeroic (character) {
+    return character.heroism === true;
+}
 
+function isNotHeroic (character) {
+    return character.heroism !== true;
+}
 
+// Outputs: false
+console.log(isNotSuperStrong(superman));
+
+// Outputs: false
+console.log(isNotHeroic(superman));
 
 
