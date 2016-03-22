@@ -30,16 +30,16 @@ var greaterThanTest = greaterThan(10);
 console.log(greaterThanTest(11));
 
 function greaterThan2(num1,callback){
-	consolle.log("about to run callback");
-	return callback(num1,num2);
+	console.log("about to run callback");
+	return callback(num1);
 };
 
 //assign first function to variable
-var greaterThanTest = greaterThan(10,testGreaterThan);
+var greaterThanTest = greaterThan2(10,testGreaterThan);
 //we can now run the first function by using the variable
 //console.log(greaterThanTest(11));
 function testGreaterThan(num){
-	return num2 > num1;
+	return num > num1;
 };
 
 greaterThanTest(11);
