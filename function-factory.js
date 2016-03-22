@@ -38,9 +38,9 @@ function greaterThan2(num1,callback){
 var greaterThanTest = greaterThan2(10,testGreaterThan);
 //we can now run the first function by using the variable
 //console.log(greaterThanTest(11));
-function testGreaterThan(num){
-	return num > num1;
+function testGreaterThan(num,num3){
+	return num > num3;
 };
 
-greaterThanTest(11);
+console.log(greaterThanTest(11));
 
