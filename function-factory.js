@@ -19,3 +19,10 @@ var greetSpanish = makeGreeting('es');
 
 greetEnglish('John', 'Doe');
 greetSpanish('John', 'Doe');
+
+function greaterThan(num1){
+	return function(num2){ return num2 > num1 };
+};
+
+var greaterThanTest = greaterThan(10);
+console.log(greaterThanTest(11));
