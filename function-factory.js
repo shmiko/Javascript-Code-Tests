@@ -34,10 +34,11 @@ function greaterThan2(num1,callback){
 	return callback(num1);
 };
 
-//assign first function to variable
+//assign first function to variable using a callback, we pass in the below function 
+//which will do the actul comparrison
 var greaterThanTest2 = greaterThan2(10,testGreaterThan);
 //we can now run the first function by using the variable
-//console.log(greaterThanTest(11));
+//callback function takes 2 args
 function testGreaterThan(num,num3){
 	return num > num3;
 };
