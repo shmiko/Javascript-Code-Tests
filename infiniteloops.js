@@ -149,19 +149,16 @@ var largestNumber = function(arr){
   var startNum;
   var currNum;
   var newStrArray = [];
-  loop(str, function(arr){
-    if 
-    newStrArray.push(value);
+  var spareArray = [];
+  loop(arr, function(arr2){
+     currNum = arr2;
+      console.log('currNum is ', currNum);
+      newStrArray.push(currNum);
+      console.log('new array sorted is ', newStrArray);
   });
-  //just testing a quicker way, need to use loop.
-      //arr.sort(function(a,b){return a - b});
-  //this is using a combanator function
-  //we need this as the array gets sorted by the first digit not the whole number, 
-  //so 9 being the highest goes last.
-  //arr.sort();
-        // console.log('arr is ',arr);
-        // return arr[arr.length - 2]; 
-  //arr is  [ 1, 10, 21, 39, 470, 471, 92 ] //why is the array not sorted properly
+  newStrArray.sort(function(a,b){return a - b});;
+  console.log('new array sorted is ', newStrArray);
+  return newStrArray;
 };
 
 var nums = [1, 21, 471, 470, 39, 10, 92];
@@ -169,14 +166,15 @@ var largestNum = largestNumber(nums);
 console.log(largestNum) // 471
 
 var multBy = function(arr, num){
-  var isIncluded = function(obj){
-      return !obj.ignore
-  }
-  var takeProperty = function(obj){
-      return obj.myProperty
-  }
-  var finalArray = _.map( _.filter(myArray, isIncluded), takeProperty  );
-  console.log('finalArray ',finalArray);
+  var multiplyNum;
+  var newStrArray = [];
+  loop(arr, function(arr2){
+    multiplyNum = arr2 * num;
+    console.log('multiplyNum is ', multiplyNum);
+    newStrArray.push(multiplyNum);
+    console.log('new array sorted is ', newStrArray);
+  });
+  return newStrArray;
   /*
   multBy takes an array, and a number and multiplies each value in the array by the input number.
 
@@ -204,8 +202,27 @@ var squareBy = function(arr, num){
   var newArray = prep.squareBy(nums, 3); 
   console.log(newArray) // [1, 8, 27, 256, 3125];
   */
+  var sqNum;
+  var sqNum2;
+  var newStrArray = [];
+  loop(arr, function(arr2){
+    var i = 1;
+    sqNum = arr2;    
+    while(i < num - 1){
+      i = i + 1;
+      sqNum = sqNum * sqNum;
+      console.log('sqNum is ', sqNum, 'i is ', i );     
+    }
+    newStrArray.push(sqNum);
+    console.log('new array sorted is ', sqNum);
+  });
+  return newStrArray;
 
 };
+
+var nums = [1, 2, 3, 4, 5];
+var newArray = squareBy(nums, 3); 
+console.log(newArray) // [1, 8, 27, 256, 3125];
 
 var capitalizeFirstLetters = function(str){
   /*
