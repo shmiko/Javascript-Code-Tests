@@ -42,5 +42,5 @@ function testGreaterThan(num,num3){
 	return num > num3;
 };
 
-console.log(greaterThanTest2(11));
+console.log(greaterThan2(11,testGreaterThan));
 
