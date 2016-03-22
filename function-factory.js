@@ -20,6 +20,8 @@ var greetSpanish = makeGreeting('es');
 greetEnglish('John', 'Doe');
 greetSpanish('John', 'Doe');
 
+
+//create a function whihc returns a function
 function greaterThan(num1){
 	return function(num2){ return num2 > num1 };
 };
@@ -29,8 +31,8 @@ var greaterThanTest = greaterThan(10);
 //we can now run the first function by using the variable
 console.log(greaterThanTest(11));
 
+//create a function which returns a callback to a function
 function greaterThan2(num1,callback){
-	console.log("about to run callback");
 	return callback(num1);
 };
 
