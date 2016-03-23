@@ -5,7 +5,7 @@
 
 var loop2 = function(collection, callback){
     // ultimate side-effects function
-    console.log(collection);
+    //console.log(collection);
     for (var i = 0; i < collection.length; i++){
       callback(collection[i]);
       //console.log(collection[i]);
@@ -16,8 +16,8 @@ var loop = function(collection, callback){
 
   if (collection.length){
     for (var i = 0; i < collection.length; i++){
-      // console.log('collection[i] is ', collection[i]);
-      callback(collection[i]);
+      //console.log('collection[i] is ', collection[i]);
+      callback(collection[i],i);
     }
   } else if (typeof collection === 'object'){
     for (var key in collection){
@@ -152,12 +152,12 @@ var largestNumber = function(arr){
   var spareArray = [];
   loop(arr, function(arr2){
      currNum = arr2;
-      console.log('currNum is ', currNum);
+      //console.log('currNum is ', currNum);
       newStrArray.push(currNum);
-      console.log('new array sorted is ', newStrArray);
+      //console.log('new array sorted is ', newStrArray);
   });
   newStrArray.sort(function(a,b){return a - b});;
-  console.log('new array sorted is ', newStrArray);
+  //console.log('new array sorted is ', newStrArray);
   return newStrArray;
 };
 
@@ -170,9 +170,9 @@ var multBy = function(arr, num){
   var newStrArray = [];
   loop(arr, function(arr2){
     multiplyNum = arr2 * num;
-    console.log('multiplyNum is ', multiplyNum);
+    //console.log('multiplyNum is ', multiplyNum);
     newStrArray.push(multiplyNum);
-    console.log('new array sorted is ', newStrArray);
+    //console.log('new array sorted is ', newStrArray);
   });
   return newStrArray;
   /*
@@ -211,10 +211,10 @@ var squareBy = function(arr, num){
     while(i < num - 1){
       i = i + 1;
       sqNum = sqNum * sqNum;
-      console.log('sqNum is ', sqNum, 'i is ', i );     
+      //console.log('sqNum is ', sqNum, 'i is ', i );     
     }
     newStrArray.push(sqNum);
-    console.log('new array sorted is ', sqNum);
+    //console.log('new array sorted is ', sqNum);
   });
   return newStrArray;
 
@@ -238,8 +238,43 @@ var capitalizeFirstLetters = function(str){
 
   */
 
+  var newArrayFromStr = str.split(" ");
+  //console.log('newArrayFromStr is ',newArrayFromStr);
+  var newStr;
+  var newChar;
+  var newerStr;
+  //var array = str.split(/(\s+)/);
+  var array = [];
+  var nCount = 0;
+  loop(newArrayFromStr,function(retstr){
+    console.log('retstr len is ',retstr.length);
+      loop(retstr,function(value,iVar){
+        //console.log('inner loop value is ',value, ' access to i var ', iVar);
+        if(iVar == 0){
+          //console.log('inner loop value[0] is ',value[0]);
+          newChar = value[0].trim();
+          array.push(newChar.toUpperCase());
+          //console.log('after inner loop value is ',value.toUpperCase());
+        }else if (iVar > 0 || iVar <= value.length){
+          //console.log('NOT inner loop value[0] is ',value[0]);
+          newChar = value.trim();
+          array.push(newChar);
+          //console.log('NOT inner loop value is ',value[0]);
+        } 
+      })
+    array.push(" "); 
+  })
+  console.log('array result is ',array.join(" "));
+  return array.join("");
 };
+//Needed to use an array of words and pass back the index to the callback.
 
+//DONE
+
+var string = 'hey how are you?';
+
+var newString = capitalizeFirstLetters(string)
+console.log('starting string is ',string,' and new CamelCase String is ',newString); // 'Hey How Are You?';
 
 // Expanding Loop to be used with objects:
 
@@ -275,7 +310,7 @@ Solve the next 2 challenges using our new and improved loop function.
 
 */
 
-var collectValues = function(obj){
+var collectionValues = function(obj){
   /*
     Takes an `object` as an argument and returns an `array` containing all of its values.
     
@@ -291,8 +326,16 @@ var collectValues = function(obj){
 
     ```
   */
+  var newArr = [];
+  loop(obj,function(value,key){
+    //console.log('value is ',value, " and key is ", key);
+    newArr.push(value);
+  })
+  return newArr;
 };
-
+var obj = {name: 'Albrey', favoriteMovie: 'Inception'};
+var listOfValues = collectionValues(obj);
+console.log(listOfValues); // ['Albrey', 'Inception'];
 
 var containsValue = function(obj, targetValue){
   /*
@@ -311,8 +354,26 @@ var containsValue = function(obj, targetValue){
   ```
 
   */
+  var boolTest;
+  loop(obj, function(value,key){
+    //console.log('targetValue is ',targetValue,'value is ',value, 'key is ',key);
+    if(value == targetValue){
+      console.log('true');
+      boolTest = true;
+    } else {
+      console.log('false');
+      boolTest = false;
+    }
+  })
+  return boolTest;
 };
+var obj = {name: 'Albrey', favoriteMovie: 'Inception'};
 
+var targetTest = containsValue(obj, 'Albrey');
+
+console.log('targetTest is ',targetTest); // true
+
+//because the 2nd object value doesn't match it will return a false which overrides the first.
 
 /*
 
@@ -419,7 +480,32 @@ This also changes how we can interact with `objects`, rarely we're going to be w
 and the index/key in order to solve the prompts.
 
 */
+var jon = {
+    name: "Jon Tippens",
+    greatestFear: "Those frozen biscuit things.",
+    dateUsedAgainstHim: "2/02/1997",
+}; 
+var albrey = {
+    name: "Albrey Brown",
+    greatestFear: "Brain aneurysm.",
+    dateUsedAgainstHim: "03/30/1991",
+};
 
+var people = [jon, albrey];
+
+for (var i = 0; i < people.length; i++){
+    var person = people[i];
+    for(var characteristic in person){
+        console.log(person[characteristic]);
+    }
+}
+
+loop(people, function(person){;
+    console.log('person is ',person);
+    loop(person, function(characteristic){
+        console.log('char is ',characteristic);
+    });
+});
 
 var copyObj = function(obj){
   /*
@@ -437,7 +523,22 @@ var copyObj = function(obj){
     ```
 
   */
+  var newObj = {};
+  var newKey;
+  loop(obj,function(value,key){
+    //console.log('value,key is ',value,key);
+    newKey = key;
+    newObj[newKey] = value;
+  })
+  //console.log(newObj);
+  return newObj;
 };
+var obj = {name: 'Albrey', favoriteMovie: 'Inception'};
+
+    var copyOfObj = copyObj(obj);
+
+    console.log(copyOfObj) // {name: 'Albrey', favoriteMovie: 'Inception'};
+
 
 var extendObj = function(obj1, obj2){
 
@@ -457,7 +558,26 @@ var extendObj = function(obj1, obj2){
     ```
 
   */
+
+  var newObj = {};
+  var newKey;
+  loop(obj1,function(value,key){
+    //console.log('value,key is ',value,key);
+    newKey = key;
+    newObj[newKey] = value;
+    loop(obj2,function(value,key){
+      newKey = key;
+      newObj[newKey] = value;
+    })
+  })
+  //console.log(newObj);
+  return newObj;
 };
+var objOne = {name: 'Albrey', favoriteMovie: 'Inception'};
+var objTwo = {favoriteColor: 'Blue', hungry: true}
+extendObj(objOne, objTwo);
+console.log(extendObj) // {name: 'Albrey', favoriteMovie: 'Inception', favoriteColor: 'Blue', hungry: true};
+
 
 var swapShuffle = function(arr){
   /*
@@ -484,9 +604,63 @@ var swapShuffle = function(arr){
   
 };
 
+var numbers = [1, 2, 3, 4, 5];
+swapShuffle(numbers);
+console.log('numbers are ',numbers) //[3, 4, 2, 1, 5];
 
-//var sampleCarList = helpers.carFactory(helpers.carDatabase, helpers.carMaker, 100);
-//console.dir(sampleCarList);
+
+var carMaker = function(year, make, model, color, price){
+  return {
+    yeah: year,
+    make: make,
+    model: model,
+    color: color,
+    price: price
+  }
+};
+
+
+var carDatabase = { 
+  years: [1991, 1992, 1993, 1994,1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  makes: ['Toyota', 'Ford', 'BMW', 'Nissan'],
+  makeAndModel: {
+    Toyota: {
+      models: ['Camry', 'Corolla', 'Prius', 'Rav4']
+    }, 
+    Ford: {
+      models: ['Fiesta', 'Focus', 'Everest', 'Mustang']
+    },
+    
+    BMW: {
+      models: ['M3', '3 Series', '4 Series', '6 Series']
+    },
+    Nissan: {
+      models: ['Altima', 'Pathfinder', 'Leaf', 'Juke']
+    }
+  },
+  colors: ['blue', 'red', 'black', 'white', 'silver', 'champagne'],
+  prices: [20000,120,6500,8700,32000,43000,27560,200,78000]
+};
+
+
+var carFactory = function(carDatabase, carMaker, numberOfCars){
+  var cars = [];
+  for (var i = 0; i <= numberOfCars; i++){
+    var randomYear = carDatabase.years[Math.floor(Math.random() * carDatabase.years.length)]
+    var randomColor = carDatabase.colors[Math.floor(Math.random() * carDatabase.colors.length)];
+    var randomMake = carDatabase.makes[Math.floor(Math.random() * carDatabase.makes.length)];
+    var randomPrice = carDatabase.prices[Math.floor(Math.random() * carDatabase.prices.length)];
+    var randomModel = carDatabase.makeAndModel[randomMake] ? carDatabase.makeAndModel[randomMake]['models'][Math.floor(Math.random() * carDatabase.makeAndModel[randomMake]['models'].length)] : alert("make does not exist in database");
+    cars.push(carMaker(randomYear, randomMake, randomModel, randomColor,randomPrice));
+  }
+
+
+  return cars;
+};
+
+
+var sampleCarList = carFactory(carDatabase, carMaker, 500);
+console.dir(sampleCarList);
 
 // CarFax.com Sprint:
 
@@ -506,34 +680,312 @@ var findBlueCars = function(carList){
       }
     })
   });
-
+  //console.log('allBlueCars are ',allBlueCars);
   return allBlueCars;
 };
+var findBlueCarsTest = findBlueCars(sampleCarList);
+console.log('findBlueCars is ',findBlueCarsTest);
 
 // Find Cars By Color
+var findColoredCars = function(carList,userColor){
+  var allColoredCars = [];
+  loop(carList, function(car){
+    loop(car, function(value,key){
+      if(key === 'color' && value === userColor){
+        allColoredCars.push(car);
+      }
+    })
+  })
+  //console.log('all colored Cars are ',allColoredCars);
+  return allColoredCars;
+};
 
-
+var findColoredCarsTest = findColoredCars(sampleCarList,'blue');
+console.log('find Colored Cars is ',findColoredCarsTest);
 
 // Find cars by year
+var findCarsByYear = function(carList,userYear){
+  var carsByYear = [];
+  loop(carList, function(car){
+    loop(car, function(value,key){
+      if(key === 'yeah' && value === userYear){
+        carsByYear.push(car);
+      }
+    })
+  })
+  //console.log('all Cars by year are ',carsByYear);
+  return carsByYear;
+};
 
-
+var findCarsByYearTest = findCarsByYear(sampleCarList,1999);
+console.log('find Cars by year is ',findCarsByYearTest);
 // Find cars between 2 years
 
 
 // Find cars by make
+var findCarsByMake = function(carsList,userMake){
+  var carsByMake = [];
+  loop(carsList, function(car){
+    loop(car,function(value,key){
+      if(key === 'make' && value === userMake){
+        carsByMake.push(car);
+      }
+    })
+  })
+  return carsByMake;
+};
 
+var carsByMakeTest = findCarsByMake(sampleCarList,'Nissan');
+console.log('carsByMakeTest is ',carsByMakeTest);
 
 // Find cars by make and model
+var findCarsByMakeModel = function(carsList,userMake,userModel){
+  var carsByMakeModel = [];
+  loop(carsList, function(car){
+    loop(car,function(value,key){
+      //console.log('make is ', userMake,' and model is ',userModel,'car.model is ',car.model,' car make is ',car.make);
+      if(car.make === userMake && car.model === userModel){
+        carsByMakeModel.push(car);
+      }
+    })
+  })
+  return carsByMakeModel;
+};
 
+var carsByMakeModelTest = findCarsByMakeModel(sampleCarList,'Nissan','Altima');
+console.log('carsByMakeModelTest is ',carsByMakeModelTest);
+console.log('____________________');
+
+// Find cars by price
+//add `lowEndPrice` and a `highEndPrice`
+
+var findByPrice = function(carsList,userPrice){
+  var carsByPrice = [];
+  var finalTestReturn;
+  loop(carsList, function(car){
+    loop(car,function(value,key){
+      if(car.price === userPrice){
+        carsByPrice.push(car);
+      }
+    })
+  })
+  if (!carsByPrice.length){
+    return "there are no cars below the price you entered.";
+  } else {
+    return carsByPrice;
+  }
+  
+};
+var carsByPriceTest = findByPrice(sampleCarList,78000);
+console.log('carsByPriceTest is ',carsByPriceTest);
+console.log('____________________');
+
+var findByPriceRange = function(carsList,lowEndPrice,highEndPrice){
+  var carsByPriceRange = [];
+  var finalTestReturn;
+  loop(carsList, function(car){
+    loop(car,function(value,key){
+      if(car.price >= lowEndPrice && car.price <= highEndPrice){
+        carsByPriceRange.push(car);
+      }
+    })
+  })
+  if (!carsByPriceRange.length){
+    return "there are no cars below the price you entered.";
+  } else {
+    return carsByPriceRange;
+  }
+  
+};
+var carsByPriceRangeTest = findByPriceRange(sampleCarList,43000,78000);
+console.log('carsByPriceRangeTest is ',carsByPriceRangeTest);
+console.log('____________________');
 
 
 // EXTRA CREDIT:
+function Redirect() {
+    alert('Redirecting you to cars.com because there are no cars that fit what you\'re looking for');
+   window.location="http://www.cars.com";
+}
 
+//I am really not sure how I can match to more than 2 properties
 // Find cars by using all categories.
 
+var findCarsByAllProps = function(carsList,userMake,userModel,userYear,userColor){
+  var carsByAllProps = [];
+  var carsByAllProps2 = [];
+  var finalCarsArray = [];
+  var carsByAllProps3 = [];
+  var finalText;
+  // loop(carsList, function(car){
+  //     var row = car;
+  //     var match = true;  
+  //     var samePropCount = 0;
+  //     loop(car,function(value,key){
+  //     if (key === 'color' && value === userColor){
+  //       samePropCount++;
+  //       if (key[value] != car[key]) {
+  //         console.log('okokokok',car);
+  //         match = false;
+  //       }
+  //     }
+  //   })
+  //   if (!samePropCount) match=false;
+  //   if (match) {
+  //     carsByAllProps.push(row);
+  //   }
+  // })
+  loop(carsList, function(car){
+    //console.log(carsList,'carsList')
+    //loop(car,function(value,key){
+      carsByAllProps.push(carsList);
+      // return car.model == 'Juke' &&
+      //      car.make == 'Leaf' &&
+      //      car.color =='blue' &&
+      //      car.yeah == 2008;
+    //})
+  })
+  loop(carsByAllProps,function(arr,index){
+    //console.log('arr is ',arr[index]);
+    if(arr[index].make === userMake && arr[index].model === userModel && arr[index].color === userColor && arr[index].yeah === userYear){
+      console.log('matching to make and model and color and year arr is ',arr[index]);
+      finalCarsArray.push(arr[index]);
+      // carsByAllProps3.push(arr[index]);
+      // loop(carsByAllProps3, function(arr2,index2){
+      //   console.log('arr2 is ',arr2[index2]);
+        // if(arr2[index2].color === userColor){// && arr2[index2].yeah === userYear){
+        //   console.log('arr[index].color 1 is ',arr2[index2].color,'arr[index].year is ',arr2[index2].yeah);
+        //   carsByAllProps2.push(arr2[index2]);
+        //   loop(carsByAllProps2,function(arr3, index3){
+        //     if(arr3[index3].year === userYear){
+        //      console.log(arr3,'arr3');
+        //      finalCarsArray.push(arr3);
+        //     }
+        //   })
+        // }
+    } else {
+      finalText = "there are no cars that fit what you're looking for";
+    }
+      
+  })
+
+      // carsByAllProps2.push(arr[index]);
+      // loop(carsByAllProps2, function(arr2, index2){
+        //console.log('arr2[index2].color is ',arr2[index2].color);
+        // if(arr2[index2].color === userColor && arr2[index2].yeah === userYear){
+        //   console.log('matching to make and model and color and year arr is ',arr2[index2]);
+        // } 
+
+
+  //console.log('okokokok',carsByAllProps);
+  // carsByAllProps.filter(function (el) {
+  //   console.log('okokokok',el);
+  //   return el.model == 'Juke' &&
+  //          el.make == 'Leaf' &&
+  //          el.color =='blue' &&
+  //          el.yeah == 2008;
+  // });    
+
+
+//                    match = false;
+//                 }
+//             }
+//         }  
+//     } 
+
+    //console.log('2nd make is ',car.make,' and model is ',car.model,' color is ',car.color,' year is ',car.yeah);      
+    // loop(car,function(value,key){
+    //   //console.log('START make is ',car.make,' and model is ',car.model,' color is ',car.color,' year is ',car.yeah);      
+    //    if (key === 'color' && value === userColor){
+    //     console.log('2nd make is ',car.make,' and model is ',car.model,' color is ',car.color,' year is ',car.yeah);      
+    //     loop (car,function(vaue,key){
+    //       console.log('2.5nd make is ',car.make,' and model is ',car.model,' color is ',car.color,' year is ',car.yeah);      
+    //       if (key === 'make' && value === userMake){
+    //         console.log('3rd make is ',car.make,' and model is ',car.model,' color is ',car.color,' year is ',car.yeah);      
+    //         loop (car,function(vaue,key){
+    //           if (key === 'yeah' && value === userYear){
+    //             loop(car, function(value,key){
+    //               if (key === 'model' && value === userModel){
+    //                 carsByAllProps.push(car);
+    //               }
+    //             })
+    //           }
+    //         })
+    //       }
+    //    }) 
+    //   } 
+    // })
+  //})
+  if (!finalCarsArray.length){
+    return Redirect();//finalText;
+  } else {
+    return finalCarsArray;
+  }
+};
+
+// yeah: 1999,
+//     make: 'Nissan',
+//     model: 'Altima',
+//     color: 'champagne'
+
+// yeah 2013
+// make Nissan
+// model Juke
+// color red
+var carsByAllPropsTest = findCarsByAllProps(sampleCarList,'Nissan','Altima',1992,'silver');
+console.log('carsByAllPropsTest is ',carsByAllPropsTest);
+//result carsByAllPropsTest is  [ { yeah: 1992, make: 'Nissan', model: 'Altima', color: 'silver' } ]
+
+// var results = [];
+// for (var i =0; i<source.length; i++) {
+//     var row = source[i];
+//     var match = true;  
+//     var samePropCount = 0;
+//     for (var prop in row) {
+//         for (var cond in conditions) {
+//             if (cond === prop ) {
+//                 samePropCount++;
+//                 if (conditions[cond] != row[prop]) {
+//                    match = false;
+//                 }
+//             }
+//         }  
+//     } 
+    // if (!samePropCount) match=false;
+    // if (match) {
+    //     results.push(row);
+    // }
+// }
+// return results;
 
 
 
+
+/*
+************************************************
+   EXTRA CREDITS and EXTRA EXTRA CREDITS
+************************************************
+*/
+/*
+************************************************
+   Added Search by all 4 properties.
+************************************************
+*/
+/*
+************************************************
+   Added Random Price to dataset, included now.
+************************************************
+*/
+/*
+************************************************
+   Added findByPrice and findByPriceRange.
+************************************************
+*/
+/*
+*************************************************************
+   Added Redirects for no results on multiple property search.
+*************************************************************
+*/
 
 
 }());
