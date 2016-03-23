@@ -153,18 +153,23 @@ var largestNumber = function(arr){
 
   */
   var startNum;
-  var currNum;
+  var currNum = 0;
   var newStrArray = [];
   var spareArray = [];
   loop(arr, function(arr2){
-     currNum = arr2;
+    if(currNum < arr2){
+      currNum = arr2;
+    }
+
+
+     //currNum = arr2;
       //console.log('currNum is ', currNum);
-      newStrArray.push(currNum);
+      //newStrArray.push(currNum);
       //console.log('new array sorted is ', newStrArray);
   });
-  newStrArray.sort(function(a,b){return a - b});;
+  //newStrArray.sort(function(a,b){return a - b});;
   //console.log('new array sorted is ', newStrArray);
-  return newStrArray;
+  return currNum;
 };
 
 var nums = [1, 21, 471, 470, 39, 10, 92];
