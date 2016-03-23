@@ -624,7 +624,7 @@ var swapShuffle = function(arr){
     arr[index] = arr[randomIndex];
     arr[randomIndex] = copy;
   });
-
+  return arr;
   
 };
 
