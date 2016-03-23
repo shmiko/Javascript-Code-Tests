@@ -815,7 +815,6 @@ var findByPrice = function(carsList,userPrice){
 };
 var carsByPriceTest = findByPrice(sampleCarList,78000);
 console.log('carsByPriceTest is ',carsByPriceTest);
-console.log('____________________');
 
 var findByPriceRange = function(carsList,lowEndPrice,highEndPrice){
   var carsByPriceRange = [];
