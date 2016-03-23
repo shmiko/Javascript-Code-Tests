@@ -561,7 +561,7 @@ var obj = {name: 'Albrey', favoriteMovie: 'Inception'};
 
     var copyOfObj = copyObj(obj);
 
-    console.log(copyOfObj) // {name: 'Albrey', favoriteMovie: 'Inception'};
+    console.log('copyOfObj is ',copyOfObj) // {name: 'Albrey', favoriteMovie: 'Inception'};
 
 
 var extendObj = function(obj1, obj2){
@@ -585,23 +585,23 @@ var extendObj = function(obj1, obj2){
 
   var newObj = {};
   var newKey;
-  loop(obj1,function(value,key){
+  loop(obj2,function(value,key){
     //console.log('value,key is ',value,key);
     newKey = key;
-    newObj[newKey] = value;
-    loop(obj2,function(value,key){
-      newKey = key;
-      newObj[newKey] = value;
-    })
+    obj1[newKey] = value;
+    // loop(obj2,function(value,key){
+    //   newKey = key;
+    //   newObj[newKey] = value;
+    // })
   })
   //console.log(newObj);
-  return newObj;
+  return obj1;
 };
 var objOne = {name: 'Albrey', favoriteMovie: 'Inception'};
 var objTwo = {favoriteColor: 'Blue', hungry: true}
 extendObj(objOne, objTwo);
-console.log(extendObj) // {name: 'Albrey', favoriteMovie: 'Inception', favoriteColor: 'Blue', hungry: true};
-
+//console.log('extendObj is ',extendObj) // {name: 'Albrey', favoriteMovie: 'Inception', favoriteColor: 'Blue', hungry: true};
+console.log('objOne is now ',objOne);
 
 var swapShuffle = function(arr){
   /*
