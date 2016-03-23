@@ -219,15 +219,18 @@ var squareBy = function(arr, num){
   var sqNum2;
   var newStrArray = [];
   loop(arr, function(arr2){
-    var i = 1;
-    sqNum = arr2;    
-    while(i < num - 1){
-      i = i + 1;
-      sqNum = sqNum * sqNum;
+    newStrArray.push(Math.pow(arr2,num))
+    // var i = 1;
+    // sqNum = arr2;    
+    // while(i < num - 1){
+    //   i = i + 1;
+    //   sqNum = sqNum * sqNum;
       //console.log('sqNum is ', sqNum, 'i is ', i );     
-    }
-    newStrArray.push(sqNum);
+    // }
+    // newStrArray.push(sqNum);
     //console.log('new array sorted is ', sqNum);
+
+
   });
   return newStrArray;
 
@@ -235,7 +238,7 @@ var squareBy = function(arr, num){
 
 var nums = [1, 2, 3, 4, 5];
 var newArray = squareBy(nums, 3); 
-console.log(newArray) // [1, 8, 27, 256, 3125];
+console.log('new sq array is ',newArray) // [1, 8, 27, 256, 3125];
 
 var capitalizeFirstLetters = function(str){
   /*
