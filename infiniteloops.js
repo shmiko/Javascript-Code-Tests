@@ -219,7 +219,7 @@ var squareBy = function(arr, num){
   var sqNum2;
   var newStrArray = [];
   loop(arr, function(arr2){
-    newStrArray.push(Math.pow(arr2,num))
+    newStrArray.push(Math.pow(arr2,num));
     // var i = 1;
     // sqNum = arr2;    
     // while(i < num - 1){
@@ -263,7 +263,7 @@ var capitalizeFirstLetters = function(str){
   var array = [];
   var nCount = 0;
   loop(newArrayFromStr,function(retstr){
-    console.log('retstr len is ',retstr.length);
+    //console.log('retstr len is ',retstr.length);
       loop(retstr,function(value,iVar){
         //console.log('inner loop value is ',value, ' access to i var ', iVar);
         if(iVar == 0){
@@ -280,7 +280,7 @@ var capitalizeFirstLetters = function(str){
       })
     array.push(" "); 
   })
-  console.log('array result is ',array.join(" "));
+  //console.log('array result is ',array.join(" "));
   return array.join("");
 };
 //Needed to use an array of words and pass back the index to the callback.
