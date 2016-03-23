@@ -684,7 +684,7 @@ console.log('numbers are ',numbers) //[3, 4, 2, 1, 5];
 
 
 var sampleCarList = helpers.carFactory(helpers.carDatabase, helpers.carMaker, 500);
-console.dir(sampleCarList);
+//console.dir(sampleCarList);
 
 // CarFax.com Sprint:
 
@@ -744,7 +744,20 @@ var findCarsByYear = function(carList,userYear){
 var findCarsByYearTest = findCarsByYear(sampleCarList,1999);
 console.log('find Cars by year is ',findCarsByYearTest);
 // Find cars between 2 years
+var findCarsBetweenYears = function(carList,userFromYear,userToYear){
+  var carsBetweenYears = [];
+  loop(carList, function(car){
+    loop(car, function(value,key){
+      if(key === 'yeah' && value >= userFromYear && value <= userToYear){
+        carsBetweenYears.push(car);
+      }
+    })
+  })
+  return carsBetweenYears;
+};
 
+var findCarsBetweenYearsTest = findCarsBetweenYears(sampleCarList,1999,2001);
+console.log('find Cars between years is ',findCarsBetweenYearsTest);
 
 // Find cars by make
 var findCarsByMake = function(carsList,userMake){
