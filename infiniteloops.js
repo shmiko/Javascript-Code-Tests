@@ -180,10 +180,12 @@ var multBy = function(arr, num){
   var multiplyNum;
   var newStrArray = [];
   loop(arr, function(arr2){
-    multiplyNum = arr2 * num;
+    //multiplyNum = arr2 * num;
     //console.log('multiplyNum is ', multiplyNum);
-    newStrArray.push(multiplyNum);
+    //newStrArray.push(multiplyNum);
+    newStrArray.push(arr2 * num);
     //console.log('new array sorted is ', newStrArray);
+
   });
   return newStrArray;
   /*
