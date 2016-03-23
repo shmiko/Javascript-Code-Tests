@@ -378,16 +378,16 @@ var containsValue = function(obj, targetValue){
   ```
 
   */
-  var boolTest;
+  var boolTest = false;;
   loop(obj, function(value,key){
     //console.log('targetValue is ',targetValue,'value is ',value, 'key is ',key);
     if(value == targetValue){
-      console.log('true');
+      //console.log('true');
       boolTest = true;
-    } else {
-      console.log('false');
-      boolTest = false;
-    }
+    } //else {
+      //console.log('false');
+      //boolTest = false;
+   // }
   })
   return boolTest;
 };
