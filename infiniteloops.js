@@ -69,17 +69,20 @@ var stringReversal = function(str){
   // console.log('1st newStr is ',newStr);
 
   loop(str, function(value){
-    newStrArray.push(value);
+    newStrArray.unshift(value);
+    // newStrArray.push(value);
   });
-  newStrArray.reverse();//.join();
+  // newStrArray.reverse();//.join();
+
+  //unshift works too
   // return newStrArray;
   //using join doesn't seem to work for some unknown reason, despite it working above.
-  //newStrArray.join();
-  for (var i = 0; i < newStrArray.length;i++){
-    newStr = newStr + newStrArray[i];
-  }
+  return newStrArray.join('');
+  // for (var i = 0; i < newStrArray.length;i++){
+  //   newStr = newStr + newStrArray[i];
+  // }
   //console.log('newStr is ',newStr);
-  return newStr;
+  // return newStr;
   /*
   stringReversal takes a string and returns it in reverse.
 
@@ -103,21 +106,24 @@ loop(obj, function(value,key){
 
 
 var isPalindrome = function(str){
-  var newStrArray = [];
-  var newStr = '';
-  loop(str, function(value){
-    newStrArray.push(value);
-  });
+  return stringReversal(str) === str;
+};
+
+  // var newStrArray = [];
+  // var newStr = '';
+  // loop(str, function(value){
+  //   newStrArray.push(value);
+  // });
   //console.log('new array is ',newStrArray)
-  newStrArray.reverse();
-  for (var i = 0; i < newStrArray.length;i++){
-    newStr = newStr + newStrArray[i];
-  }
+  // newStrArray.reverse();
+  // for (var i = 0; i < newStrArray.length;i++){
+  //   newStr = newStr + newStrArray[i];
+  // }
   //console.log('newStr is ',newStr, ' and original str was ', str);
-  if(newStr === str){
-    return true;
-  }
-  return false;
+  // if(newStr === str){
+  //   return true;
+  // }
+  // return false;
   
   /*
 
@@ -132,7 +138,7 @@ var isPalindrome = function(str){
   var falsePalindrome = isPalindrome('hello');
 
   */
-};
+
 var truePalindrome = isPalindrome('hannah');
 console.log(truePalindrome); //true
 var falsePalindrome = isPalindrome('hello');
