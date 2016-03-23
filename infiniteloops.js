@@ -264,7 +264,14 @@ var capitalizeFirstLetters = function(str){
   var nCount = 0;
   loop(newArrayFromStr,function(retstr){
     //console.log('retstr len is ',retstr.length);
-      loop(retstr,function(value,iVar){
+      //loop(retstr,function(value,iVar){
+
+        newChar = retstr[0].toUpperCase();
+        newerStr = retstr.slice(1);
+        newStr = newChar + newerStr;
+        array.push(newStr);
+      //})
+        /*
         //console.log('inner loop value is ',value, ' access to i var ', iVar);
         if(iVar == 0){
           //console.log('inner loop value[0] is ',value[0]);
@@ -279,9 +286,10 @@ var capitalizeFirstLetters = function(str){
         } 
       })
     array.push(" "); 
+    */
   })
   //console.log('array result is ',array.join(" "));
-  return array.join("");
+  return array.join(" ");
 };
 //Needed to use an array of words and pass back the index to the callback.
 
