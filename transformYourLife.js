@@ -293,7 +293,7 @@ var makeTicTacToeBoard = function(number){
 	return boardArray;
 }
 
-var testMatrix = makeTicTacToeBoard(4);
+var testMatrix = makeTicTacToeBoard(3);
 console.log(testMatrix);
 // 16. setXorO 
 
