@@ -16,7 +16,6 @@ Array.prototype.filterBy = function(predicate){
 			// console.log('now checking if even or not: ',predicate(arr));
 			newNumberArray.push(arr);//put true value into new array to be returned
 			// console.log(newNumberArray);
-			
 		}		
 	})
 	if (newNumberArray.length){
@@ -35,6 +34,5 @@ var allEvenNumbers = numbersPos.filterBy(function(number) {
 	// console.log('isEven result is ', number % 2 === 0)
     return number % 2 === 0;   
 });
-
 console.log(notAllEvenNumbers) // [2, 4];
 console.log(allEvenNumbers) // [0, 2, 4, 6, 8];
