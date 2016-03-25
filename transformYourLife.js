@@ -300,7 +300,7 @@ console.log(testMatrix);
 
 var gameCreator = function(number){
 	var gameObject = {};
-	console.log('about to call makeTicTacToeBoard(number)');
+	// console.log('about to call makeTicTacToeBoard(number)');
 	makeTicTacToeBoard(number);
 	gameObject.gameBoard = testMatrix;
 	return gameObject;
@@ -309,7 +309,6 @@ var gameCreator = function(number){
 var gameCreatorTest = gameCreator(3);
 console.log('gameCreator will be ',gameCreatorTest);
 
-// 16. setXorO 
 
 // 16. setXorO 
 
