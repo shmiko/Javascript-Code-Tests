@@ -3,6 +3,7 @@
 
 if (!Array.prototype.first){
 	Array.prototype.first = function(predicate){
+		console.log('predicate is ',predicate);
 		if (this == null)
 			throw new TypeError();
 		if (typeof predicate != 'function')
