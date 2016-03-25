@@ -5,7 +5,6 @@ var loop = function(collection, callback){
       callback(collection[i], i);
     }
 };
-
 Array.prototype.filterBy = function(predicate){
 	//console.log('predicate is ',predicate); //this returns numbers.filterBy arguments function
 	//console.log('this is ',this);
@@ -23,7 +22,6 @@ Array.prototype.filterBy = function(predicate){
 	}
 	return false;
 };
-
 var numbers = [1, 2, 3, 4, 5];
 var numbersPos = [0, 2, 4, 6, 8];
 var notAllEvenNumbers = numbers.filterBy(function(number) { 
