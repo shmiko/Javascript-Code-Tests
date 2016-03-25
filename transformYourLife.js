@@ -295,7 +295,44 @@ var makeTicTacToeBoard = function(number){
 
 var testMatrix = makeTicTacToeBoard(3);
 console.log(testMatrix);
+
+//gameCreator
+
+var gameCreator = function(number){
+	var gameObject = {};
+	console.log('about to call makeTicTacToeBoard(number)');
+	makeTicTacToeBoard(number);
+	gameObject.gameBoard = testMatrix;
+	return gameObject;
+};
+
+var gameCreatorTest = gameCreator(3);
+console.log('gameCreator will be ',gameCreatorTest);
+
 // 16. setXorO 
+
+// 16. setXorO 
+
+var setXorO = function(gameObj,coordsArr){
+	var row;
+	var col;
+	loop(gameCreatorTest,function(value,key){
+		loop(value.gameBoard, function(arr,index){
+			row = coords[0];
+			col = coords[1];
+			console.log('arr and index are ', arr,index);
+			if (arr == row){
+				loop(arr,function(value,key){
+					console.log('value and key are ',value,key);
+				})
+			}
+		})
+
+	})
+};
+
+var testSetXorO = setXorO(gameCreatorTest.gameBoard, [0,0]);
+console.log('testSetXorO is ',testSetXorO);
 
 
 
