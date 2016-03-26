@@ -56,6 +56,7 @@ log(fluffy.__proto__);//Cat{} instance of Cat now has age 3
 
 //create a new instance of cat and it will have age property
 var muffin = new Cat('Muffin','Brown');
-log(muffin.__proto__); //already has age property
+log(muffin.__proto__); //already has age whis is the property of the prototype
+//assigning an age property to fluffy will give fluffy its own age property
 
 
