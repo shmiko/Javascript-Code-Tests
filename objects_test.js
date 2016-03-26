@@ -107,15 +107,18 @@ log(myHouse.name.last);
 
 
 //test inheritance
-function Animal(){
-
+function Animal(voice){
+	this.voice = voice || 'grunt';//passes through to any animal created from this prototype
+	//if voice is a param otherwise it will grunt
 };
 
 Animal.prototype.speak = function(){
-	log('Meow');
+	log(this.voice);//accepts the voice arg
 };
 
 function Cat(name,color){
+	Animal.call(this,'meow'); //passes in the cat from the Animal function
+	//and now accepts a voice argument
 	this.name = name;
 	this.color = color;
 };
@@ -127,6 +130,8 @@ var kittyChops = new Cat('Chopper','white');
 log('kittyChops is ',kittyChops);
 
 kittyChops.speak();//make kittyChops speak
+
+log(kittyChops);//tells us it was created from Animal
 
 
 
