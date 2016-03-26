@@ -30,3 +30,4 @@ var cat = {name: 'fluffy'};
 log(cat.prototype); //undefined
 
 //it does have the __proto__ preperty
+log(cat.__proto__);
