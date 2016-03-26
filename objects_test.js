@@ -104,3 +104,6 @@ log(yourHouse);
 //setter also sets the individual name properties
 log(yourHouse.name.first);
 log(myHouse.name.last);
+
+
+//testing Prototypes and Inheritance
