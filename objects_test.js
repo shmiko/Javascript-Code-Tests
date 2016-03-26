@@ -79,4 +79,4 @@ Object.defineProperty(myHouse, 'fullName',
 		return this.name.first + ' ' + this.name.last
 	}
 });
-log(myHouse);
+log(myHouse.fullName);
