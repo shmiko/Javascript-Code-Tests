@@ -38,5 +38,8 @@ A function's prototype: Is the object instance that will become the prototype fo
 An object's prototype: Is the object instance form which the object is inherited
 
 */
+var fluffy = new Cat('Fluffy','White');
 
+log(Cat.prototype);
+log(fluffy.__proto__);
 
