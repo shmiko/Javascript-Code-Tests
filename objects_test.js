@@ -30,12 +30,21 @@ log(myHouse.type);//displays type as Flat
 // myHouse.writable = false; //disable writable property but we don't get an error
 // myHouse.type = 'Unit'; //fails to display as it cannot be written
 log(myHouse.type);
-Object.defineProperty(myHouse, 'type', {writable:false});//set object prop to writab;e false
+// Object.defineProperty(myHouse, 'type', {writable:false});//set object prop to writab;e false
 // myHouse.type = 'Unit';//Cannot assign to read only property 'type' of #<House>
 log(myHouse.type);// without strict mode no error 
-myHouse.material.first = 'Stone'; //this property can still be set despite writable type being false
+myHouse.material/*.first*/ = 'Stone'; //this property can still be set despite writable type being false
 log(myHouse.material);
-Object.freeze(myHouse.material);//this freezes the whole object, even for predefined properties
-myHouse.material.first = 'LimeStone'; //fails as object is now read only
+//Object.freeze(myHouse.material);//this freezes the whole object, even for predefined properties
+myHouse.material/*.first*/ = 'LimeStone'; //fails as object is now read only
 log(myHouse.material);
+
+//Testing Enumerable - can loop and show properties
+Object.defineProperty(myHouse,'material',{enumerable:false});
+
+for (var propertyName in myHouse){
+	log(propertyName + ': ' + myHouse[propertyName]);
+}//this shows properties and values
+
+log(Object.keys(myHouse//show properties
 
