@@ -26,11 +26,11 @@ log(arr2.last);//this works
 var myFunction = function(){};
 log(myFunction.prototype); //returns {}
 //object does not have a prototype
-var cat = {name: 'fluffy'};
-log(cat.prototype); //undefined
+var Catty = {name: 'fluffy'};
+log(Catty.prototype); //undefined
 
 //it does have the __proto__ preperty
-log(cat.__proto__); //returns {}
+log(Catty.__proto__); //returns {}
 
 /*
 A function's prototype: Is the object instance that will become the prototype for all objects created using this function as a constructor.
@@ -38,8 +38,12 @@ A function's prototype: Is the object instance that will become the prototype fo
 An object's prototype: Is the object instance form which the object is inherited
 
 */
+function Cat(name,color){
+	this.name = name;
+	this.color = color;
+};
 var fluffy = new Cat('Fluffy','White');
 
-log(Cat.prototype);
-log(fluffy.__proto__);
+log(Cat.prototype); //Cat{}
+log(fluffy.__proto__);//Cat{}
 
