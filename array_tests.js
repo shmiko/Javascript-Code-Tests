@@ -54,4 +54,8 @@ Cat.prototype.age = 3;
 log(Cat.prototype); //Cat{}
 log(fluffy.__proto__);//Cat{} instance of Cat now has age 3
 
+//create a new instance of cat and it will have age property
+var muffin = new Cat('Muffin','Brown');
+log(muffin.__proto__); //already has age property
+
 
