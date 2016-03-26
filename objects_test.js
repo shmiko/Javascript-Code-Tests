@@ -137,4 +137,10 @@ log(typeof kittyChops.prototype);//undefined because object is the top level
 log(kittyChops instanceof Cat);//true
 log(Cat instanceof Animal);//false
 log(kittyChops instanceof Animal);//true
+log(kittyChops.__proto__);//Animal{}
+log(kittyChops.__proto__.__proto__);//Animal {speak:[Function]}
+
+
+
+
 
