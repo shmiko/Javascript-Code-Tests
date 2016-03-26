@@ -56,3 +56,8 @@ for (var propertyName in myHouse){
 log(Object.keys(myHouse));//show properties including material
 log(JSON.stringify(myHouse));//show json object as sting
 
+//testing configurable - this allows or disallows setting enumerable and writable properties
+Object.defineProperty(myHouse,'floors',{configurable:false});
+//try changing enumerable
+Object.defineProperty(myHouse,'floors',{enumerable:false});
+//Cannot redefine property: floors
