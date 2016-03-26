@@ -61,3 +61,7 @@ Object.defineProperty(myHouse,'floors',{configurable:false});
 //try changing enumerable
 Object.defineProperty(myHouse,'floors',{enumerable:false});
 //Cannot redefine property: floors
+//Cannot change configurable back to true as it is set to false?????
+Object.defineProperty(myHouse,'floors',{enumerable:true});
+//You can however set writable to true or false.
+// Object.defineProperty(myHouse,'floors',{writable:false});
