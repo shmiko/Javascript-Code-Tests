@@ -45,7 +45,13 @@ function Cat(name,color){
 var fluffy = new Cat('Fluffy','White');
 
 log(Cat.prototype); //Cat{}
-log(fluffy.__proto__);//Cat{}
+log(fluffy.__proto__);//Cat{} instance of Cat
 //same
 log(Cat.prototype === fluffy.__proto__); //returns true
+
+//change Cats prototype will reflect in fluffy proto
+Cat.prototype.age = 3;
+log(Cat.prototype); //Cat{}
+log(fluffy.__proto__);//Cat{} instance of Cat now has age 3
+
 
