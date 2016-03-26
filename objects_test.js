@@ -69,3 +69,14 @@ Object.defineProperty(myHouse,'floors',{enumerable:true});
 //You can however set writable to true or false.
 // Object.defineProperty(myHouse,'floors',{writable:false});
 log(myHouse);
+myHouse.name = {first:'Lilly', last:'field'};
+log(myHouse);
+//testing getters and setters
+//define a new property using get to display house type and material
+Object.defineProperty(myHouse, 'fullName',
+{
+	get: function(){
+		return this.name.first + ' ' + this.name.last
+	}
+});
+log(myHouse);
