@@ -24,7 +24,7 @@ log(myHouse); //returns all properties and values assigned to myHouse
 log(yourHouse); //returns all properties and values assigned to yourHouse
 log(myHouse.landSize); //returns just landsize value of myHouse
 log(myHouse['floors']); //returns just the floors value of myHouse
-//testing object property descriptors
+//testing object property attributes
 log(Object.getOwnPropertyDescriptor(myHouse, 'type'));//this show the inner properties of the objext prototype
 myHouse.type = 'Flat';//sets type property
 log(myHouse.type);//displays type as Flat
