@@ -33,8 +33,9 @@ log(myHouse.type);
 Object.defineProperty(myHouse, 'type', {writable:false});//set object prop to writab;e false
 // myHouse.type = 'Unit';//Cannot assign to read only property 'type' of #<House>
 log(myHouse.type);// without strict mode no error 
-myHouse.material = 'Stone'; //this property can still be set despite writable type being false
+myHouse.material.first = 'Stone'; //this property can still be set despite writable type being false
 log(myHouse.material);
-Object.freeze(myHouse.material);
-myHouse.material = 'LimeStone';
+Object.freeze(myHouse.material);//this freezes the whole object, even for predefined properties
+myHouse.material.first = 'LimeStone'; //fails as object is now read only
 log(myHouse.material);
+
