@@ -27,7 +27,11 @@ log(myHouse['floors']); //returns just the floors value of myHouse
 log(Object.getOwnPropertyDescriptor(myHouse, 'type'));//this show the inner properties of the objext prototype
 myHouse.type = 'Flat';//sets type property
 log(myHouse.type);//displays type as Flat
-myHouse.writable = false; //disable writable property but we don't get an error
+// myHouse.writable = false; //disable writable property but we don't get an error
 myHouse.type = 'Unit'; //fails to display as it cannot be written
+log(myHouse.type);
 Object.defineProperty(myHouse, 'type', {writable:false});//set object prop to writab;e false
 myHouse.type = 'Unit';//Cannot assign to read only property 'type' of #<House>
+log(myHouse.type);// without strict mode no error 
+myHouse.material = 'Stone';
+log(myHouse.material);
