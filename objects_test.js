@@ -53,5 +53,5 @@ for (var propertyName in myHouse){
 }//this shows properties and values
 
 log(Object.keys(myHouse));//show properties including material
-
+log(JSON.stringify(myHouse));//show json object as sting
 
