@@ -57,11 +57,15 @@ log(Object.keys(myHouse));//show properties including material
 log(JSON.stringify(myHouse));//show json object as sting
 
 //testing configurable - this allows or disallows setting enumerable and writable properties
-Object.defineProperty(myHouse,'floors',{configurable:false});
+// Object.defineProperty(myHouse,'type',{configurable:false});
 //try changing enumerable
-Object.defineProperty(myHouse,'floors',{enumerable:false});
+Object.defineProperty(myHouse,'floors',{enumerable:true});
 //Cannot redefine property: floors
 //Cannot change configurable back to true as it is set to false?????
-Object.defineProperty(myHouse,'floors',{enumerable:true});
+//if configurable is false you cannot delete a property
+// delete myHouse.type;
+//Cannot delete property 'type' of #<House>
+// Object.defineProperty(myHouse,'floors',{configurable:true});//Cannot redefine property: floors
 //You can however set writable to true or false.
 // Object.defineProperty(myHouse,'floors',{writable:false});
+log(myHouse);
