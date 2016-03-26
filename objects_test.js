@@ -80,3 +80,18 @@ Object.defineProperty(myHouse, 'fullName',
 	}
 });
 log(myHouse.fullName);
+//adding a setter to enable setting the fullName of the house
+Object.defineProperty(yourHouse, 'fullName',
+{
+	get: function(){
+		return this.name.first + ' ' + this.name.last
+	},
+	set: function(){
+		var nameParts = value.split(' ');
+		this.name.first = nameParts[0];
+		this.name.last = nameParts[1];
+	}
+});
+
+yourHouse.fullname = 'Castle Hilltop';
+log(yourHouse);
