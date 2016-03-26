@@ -46,4 +46,6 @@ var fluffy = new Cat('Fluffy','White');
 
 log(Cat.prototype); //Cat{}
 log(fluffy.__proto__);//Cat{}
+//same
+log(Cat.prototype === fluffy.__proto__); //returns true
 
