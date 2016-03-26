@@ -132,6 +132,8 @@ log('kittyChops is ',kittyChops);
 kittyChops.speak();//make kittyChops speak
 
 log(kittyChops);//tells us it was created from Animal
+log(Cat.prototype);//show Animal
+log(typeof kittyChops.prototype);//undefined because object is the top level
 
 
 
