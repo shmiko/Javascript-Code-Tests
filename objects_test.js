@@ -106,4 +106,27 @@ log(yourHouse.name.first);
 log(myHouse.name.last);
 
 
+//test inheritance
+function Animal(){
+
+};
+
+Animal.prototype.speak = function(){
+	log('Meow');
+};
+
+function Cat(name,color){
+	this.name = name;
+	this.color = color;
+};
+
+Cat.prototype = Object.create(Animal.prototype);
+
+var kittyChops = new Cat('Chopper','white');
+
+log('kittyChops is ',kittyChops);
+
+kittyChops.speak();//make kittyChops speak
+
+
 
