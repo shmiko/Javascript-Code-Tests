@@ -59,4 +59,7 @@ var muffin = new Cat('Muffin','Brown');
 log(muffin.__proto__); //already has age whis is the property of the prototype
 //assigning an age property to fluffy will give fluffy its own age property
 
+//instance properties override the prototype property
+//using new gives an instance of the original object
+
 
