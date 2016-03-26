@@ -106,4 +106,4 @@ log(yourHouse.name.first);
 log(myHouse.name.last);
 
 
-//testing Prototypes and Inheritance
+
