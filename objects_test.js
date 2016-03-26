@@ -39,12 +39,19 @@ log(myHouse.material);
 myHouse.material/*.first*/ = 'LimeStone'; //fails as object is now read only
 log(myHouse.material);
 
-//Testing Enumerable - can loop and show properties
+//Testing Enumerable - can loop and show/hide properties
 Object.defineProperty(myHouse,'material',{enumerable:false});
 
 for (var propertyName in myHouse){
 	log(propertyName + ': ' + myHouse[propertyName]);
+}//this shows properties and values but not material
+
+log(Object.keys(myHouse));//show properties but not material which enumerable is false
+Object.defineProperty(myHouse,'material',{enumerable:true});
+for (var propertyName in myHouse){
+	log(propertyName + ': ' + myHouse[propertyName]);
 }//this shows properties and values
 
-log(Object.keys(myHouse//show properties
+log(Object.keys(myHouse));//show properties including material
+
 
