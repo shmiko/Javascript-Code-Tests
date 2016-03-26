@@ -30,4 +30,13 @@ var cat = {name: 'fluffy'};
 log(cat.prototype); //undefined
 
 //it does have the __proto__ preperty
-log(cat.__proto__);
+log(cat.__proto__); //returns {}
+
+/*
+A function's prototype: Is the object instance that will become the prototype for all objects created using this function as a constructor.
+
+An object's prototype: Is the object instance form which the object is inherited
+
+*/
+
+
