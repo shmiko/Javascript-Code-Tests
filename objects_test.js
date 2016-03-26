@@ -93,10 +93,14 @@ Object.defineProperty(yourHouse, 'fullName',
 		this.name.first = nameParts[0];
 		this.name.last = nameParts[1];
 	}
-});
-yourHouse.owner = 'yours';
-myHouse.owner = 'mine';
-yourHouse.fullName = 'Castle Hilltop';
-log(yourHouse.fullName);
+}); //defines fullName using get and allows setting fullName using set
+yourHouse.owner = 'yours'; //add owner property
+myHouse.owner = 'mine';//add owner property
+yourHouse.fullName = 'Castle Hilltop'; //set fullName using setter
+log(yourHouse.fullName); //display setter fullName
 log(myHouse);
 log(yourHouse);
+
+//setter also sets the individual name properties
+log(yourHouse.name.first);
+log(myHouse.name.last);
