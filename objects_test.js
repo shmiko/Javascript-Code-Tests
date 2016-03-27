@@ -140,7 +140,27 @@ log(kittyChops instanceof Animal);//true
 log(kittyChops.__proto__);//Animal{}
 log(kittyChops.__proto__.__proto__);//Animal {speak:[Function]}
 
+//using classes
+class Vehicle {
+	constructor(drive){
+		this.drive = drive || 'backwards';
+	}
 
+	direction(){
+		log(this.drive);
+	}
+}
+
+class Car extends Vehicle{
+	constructor(model,color){
+		super('forward');//this is inheriting from the prototypr direction function
+		this.model = model;
+		this.color = color;
+	}
+}
+
+var myCar = new Car('Holden','Black');//create instance
+myCar.direction();//forward
 
 
 
