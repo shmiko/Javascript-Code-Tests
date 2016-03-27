@@ -161,6 +161,8 @@ class Car extends Vehicle{
 
 var myCar = new Car('Holden','Black');//create instance
 myCar.direction();//forward
+log(myCar);//Car { drive: 'forward', model: 'Holden', color: 'Black' }
+
 
 
 
