@@ -1,5 +1,5 @@
 'use strict'
-
+//object constructor
 function House(material,type,floors,location){
 	this.material = material;
 	this.type = type;
