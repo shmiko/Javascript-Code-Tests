@@ -32,29 +32,36 @@ function destroyer(arr) {
   var newArray = [];
   var arg1;
   var arg2;
+  var nindex = 0;
   var arg0 = arguments[0];
-  console.log(arguments[0].length,' is length of arg0');
-  for (var i = 0; i< arguments[0].length;i++){
+  newArray = arg0;
+  var len = newArray.length;
+  var el;
+  //console.log(len,' is length of newArray');
+  for (var i = 0; i < len;i++){
     //if (arr[0].indexof(arr[1])){
-    console.log('index in loop:',i);
+    //console.log('index in loop:',i);
     arg1 = arguments[1];
     arg2 = arguments[2];
-    //console.log('args in loop',arguments[0],arguments[1],arguments[2]);
-      // var index = arg0[i].indexof(arg1);
-      // var index2 = arg0[i].indexof(arg2);
-      if (arg0[i]===arg1){
-        console.log('args[i] in torf',arguments[0][i],'arg1:',arg1);
-        arr[0].splice(arg1,1);
+    el = newArray[i];
+    console.log('newArray in loop el is:',el,'arg1:',arg1,'arg2',arg2);
+      var index = (el===arg1);
+      var index2 = (el===arg2);
+      if (index){
+        console.log('index1----args[i] in torf',newArray[i],'arg1:',arg1,'index is true',index);
+        newArray.splice(i,1);
+        //delete newArray[i];
       }
-      if (arg0[i]===arg2){
-        console.log('args[i] in torf',arguments[0][i],'arg2:',arg2);      
-        arr[0].splice(arg2,1);
+      if (index2){
+        console.log('index2-----args[i] in torf',newArray[i],'arg2:',arg2,'index is true',index);      
+        newArray.splice(i,1);
+        //delete newArray[i];
       }
-    console.log('returned arr:',arr[0]);
-      return arr[0];
+    //console.log('newArray returned is:',newArray);
+      
     //}
   }
-  
+  return 'newArray returned is:' + newArray;
 }
 
 destroyer([1, 2, 3, 1, 2, 3], 2, 3);
