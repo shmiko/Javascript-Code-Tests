@@ -13,6 +13,9 @@ function getStocksOver(stocks,minPrice){
 // 	 		results.push(item);
 // 	 	}
 // 	 });
+
+
+
 // 	 return results;
 // };
 
