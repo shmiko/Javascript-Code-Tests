@@ -120,37 +120,66 @@ var foodsTest = ['meat','cheese','bread','olives'];
 // var testfilterByFood = filterByAnyFood(people,['meat','cheese','bread','olives']);
 // console.log('testfilterByFood:',testfilterByFood);
 
-var filterPeople = function(collection,arr){
+// var filterPeople2 = function(collection,arr){
+// 	var peopleArray = [];
+// 	var test;
+// 	var test2;
+// 	var matched = false;
+// 	toolbelt.filterBy(collection,function(el,ind){
+// 		// console.log('el is: ',el,' and ind should be:', ind,'el[ind]:',el[ind]);
+// 		// toolbelt.loop(arr,function(element,index){
+// 			// console.log('el[allergies][index] is: ',el,' and el[dislikes][index] should be:', el['dislikes'][index]);
+// 			test = el['allergies'];//[index];
+// 			test2 = el['dislikes'];//[index];
+// 			console.log('test:',test,'test2',test2,'element is:',el);
+// 			if(test[ind] != el && test2[ind] != el && !matched){
+// 				// console.log('NO MATCH test:',test[index],'NO MATCH test2',test2[index]);
+// 				peopleArray.push(el.name);	
+// 				// console.log('inside loop peopleArray', peopleArray);
+// 			} else {
+// 				// console.log('matched stop looking');
+// 				matched = true;
+// 				// break;
+// 			}
+// 		// })
+// 		matched = false;
+// 	},arr)
+// 	// console.log('peopleArray', peopleArray);
+// 	return peopleArray;
+// };
+
+toolbelt.filterPeople = function(collection,prop,prop2,foodsTest){
 	var peopleArray = [];
-	var test;
-	var test2;
-	var matched = false;
-	toolbelt.filterBy(collection,function(el,ind){
-		// console.log('el is: ',el,' and ind should be:', ind,'el[ind]:',el[ind]);
-		// toolbelt.loop(arr,function(element,index){
-			// console.log('el[allergies][index] is: ',el,' and el[dislikes][index] should be:', el['dislikes'][index]);
-			test = el['allergies'];//[index];
-			test2 = el['dislikes'];//[index];
-			console.log('test:',test,'test2',test2,'element is:',el);
-			if(test[ind] != el && test2[ind] != el && !matched){
-				// console.log('NO MATCH test:',test[index],'NO MATCH test2',test2[index]);
-				peopleArray.push(el.name);	
-				// console.log('inside loop peopleArray', peopleArray);
-			} else {
-				// console.log('matched stop looking');
-				matched = true;
-				// break;
-			}
-		// })
-		matched = false;
-	},arr)
-	// console.log('peopleArray', peopleArray);
-	return peopleArray;
+	console.log('foods test',foodsTest[0]);
+	toolbelt.filterBy(collection,function(obj){
+		console.log('obj is: ',obj,' and property should be:', prop,' together it is ',obj[prop],'prop2 is:',prop2,'obj prop2 is:',obj[prop2]);
+		if(foodsTest[0] == prop || foodsTest[0] == prop2){
+			console.log('gotem');
+		}
+		peopleArray.push(obj[name]);	
+	})
+	
 };
 
-var testfilterByFoodTB = filterPeople(people,foodsTest);
-console.log('testfilterByFoodTB:',testfilterByFoodTB);
 
+var elemToDestroy = [];
+  for(var i = 1; i < arguments.length; i++){
+    elemToDestroy.push(arguments[i]);
+  }
 
+  var survived = arguments[0].filter(function(element, index){
+    var toReturn = true;
+
+    for(var i = 0; i < elemToDestroy.length; i++){
+      if (element === elemToDestroy[i]){ 
+        toReturn = false;
+      }
+    }
+    return toReturn;
+
+  });
+  return survived;
+
+var testfilterByAnyPriceAverage = toolbelt.filterPeople(people,'dislikes','allergies',foodsTest);
 
 
