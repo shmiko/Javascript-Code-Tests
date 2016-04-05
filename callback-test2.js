@@ -1,18 +1,18 @@
-function logStuff(userData) {
-    if ( typeof userData === "string")
+function writeMySkills(myData) {
+    if ( typeof myData === "string")
     {
-        console.log(userData);
+        console.log(myData);
     }
-    else if ( typeof userData === "object")
+    else if ( typeof myData === "object")
     {
-        for (var item in userData) {
-            console.log(item + ": " + userData[item]);
+        for (var item in myData) {
+            console.log(item + ": " + myData[item]);
         }
     }
 };
-function getInput(options, callback) {
-	var allUserData = [];
-    allUserData.push(options);
+function getMyInput(options, callback) {
+    var allMyData = [];
+    allMyData.push(options);
     callback(options);
 }
-getInput({name:"Rich", speciality:"JavaScript"}, logStuff);
+getMyInput({name:"Paul", skills:"JavaScript"}, writeMySkills);

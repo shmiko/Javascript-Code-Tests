@@ -10,22 +10,22 @@
 // Global Scope
 
 // Global Scope starts under here 
-function aHero () {  // Establish dummy global scope functions to return some words so the function calls in local scopes work
-	return "Gal";
+function aFavoriteSuperhero () {  // Establish dummy global scope functions to return some words so the function calls in local scopes work
+	return "BananaMan";
 }
-function aFoil () {
-	return "Cow";
+function aFavoriteVillain () {
+	return "BlenderMan";
 }
-function aDeed () {
-	return "Taps";
+function aFightBetweenGoodAndBad () {
+	return " Traps ";
 }
 
-var hero = aHero();
+var Superhero = aFavoriteSuperhero();
 var newSaga = function() { // <-- scope1 starts here
-	var foil = aFoil();
+	var favoriteVillain = aFavoriteVillain();
 	var saga = function() { // <-- scope2 starts here 
-		var deed = aDeed();
-		console.log(hero+deed+foil);
+		var Task = aFightBetweenGoodAndBad();
+		console.log(Superhero+Task+favoriteVillain);
 	}; // <-- scope2 ends here 
 	saga();
 	// -> GalTapsCow
@@ -41,13 +41,13 @@ newSaga();
 // Use these notes to follow along with the lesson. You can run the code in this file to reproduce what you see in the videos. 
 
 var sagas = []; // global array to store saga function objects, accessible outside of the newSaga function 
-var hero = aHero();
+var Superhero = aFavoriteSuperhero();
 var newSaga = function(){
-	var foil = aFoil();
+	var favoriteVillain = aFavoriteVillain();
 	//var saga = function(){   -> now need to push saga function objects into the sagas array 
 	sagas.push(function(){  
-		var deed = aDeed();
-		log(hero+deed+foil);
+		var Task = aFightBetweenGoodAndBad();
+		console.log(Superhero+Task+favoriteVillain);
 	});
 };
 newSaga();
