@@ -21,21 +21,21 @@ function aFightBetweenGoodAndBad () {
 }
 
 var Superhero = aFavoriteSuperhero();
-var newSaga = function() { // <-- scope1 starts here
+var newDoIt = function() { // <-- scope1 starts here
 	var favoriteVillain = aFavoriteVillain();
-	var saga = function() { // <-- scope2 starts here 
+	var doIt = function() { // <-- scope2 starts here 
 		var Task = aFightBetweenGoodAndBad();
 		console.log(Superhero+Task+favoriteVillain);
 	}; // <-- scope2 ends here 
-	saga();
-	// -> GalTapsCow
-	saga();
-	// -> GalTapsCow
+	doIt();
+	// -> BananaMan Traps BlenderMan
+	doIt();
+	// -> BananaMan Traps BlenderMan
 }; // <-- scope1 ends here
-newSaga();
-// -> GalTapsCow
-newSaga();
-// -> GalTapsCow
+newDoIt();
+// -> BananaMan Traps BlenderMan
+newDoIt();
+// -> BananaMan Traps BlenderMan
 
 // HOW TO USE THESE NOTES: 
 // Use these notes to follow along with the lesson. You can run the code in this file to reproduce what you see in the videos. 

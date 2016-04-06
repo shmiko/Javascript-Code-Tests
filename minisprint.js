@@ -1,7 +1,7 @@
 // THIS MINI SPRINT IS MEANT TO HELP YOU PRACTICE USING UNDERSCORE FUNCTIONS:
 console.log("looking?");
 
-
+// var _ = require("underscore");
 // var _ = {each: function() map:function()};
 
 
@@ -77,6 +77,8 @@ function average(array,startValue) {
 
 console.log('ave:',average(nums,0));
 
+
+
 function onlyEven(array) {
  // use _.filter to find all of the even numbers in a given array.
 	var evens = _.filter(array, function(obj) {
@@ -88,14 +90,26 @@ function onlyEven(array) {
 };
 console.log('onlyEven',onlyEven(nums));
 
+
+
 function repeat(times, VALUE) {
+	
 	// use _.map and _.range to return an array with the VALUE repeated however many times the 'times' parameter specifies.
-	return _.map(_.range(times,VALUE),function(val){
-			return val;
-		});
+	// var sReturnRange =  _.range(times);
+	// return _.map(sReturnRange,function(){
+	// 	return VALUE;
+	// })
+	//OR 
+	return _.map( _.range(times),function(){
+		return VALUE;
+	});
 };
 
+
+// console.log(result);
 console.log('repeat this:',repeat(5,"Yo"));
+
+
 /*
 
 Example:
@@ -108,17 +122,21 @@ repeat(4, "Major");
 
 */
 
-function repeatedly(times, fun) {
+function repeatedly(times, callback) {
 	// expand your implementation of repeat to take an input function instead of hardcoding in the VALUE. Check the example below to get a better understanding.
+	return _.map(_.range(times), callback);
 };
 
 
-/*
 
-var randomArray = repeatedly(3, function(num){
-	return Math.floor(Math.random() * num + 1);
+
+var randomArray = repeatedly(3, function(){
+	return Math.floor((Math.random() * 10) + 1);
 });
 console.log(randomArray);
 
+var randomArray2 = repeatedly(3, function(num){
+	return Math.floor((Math.random() * num) + 1);
+});
+console.log(randomArray2);
 // [1, 3, 8]
-*/
