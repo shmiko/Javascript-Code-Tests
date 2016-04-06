@@ -17,12 +17,12 @@ var loop = function(collection, callback){
 };
 
 
-// 1. Build transform.
+// 1. Build transform. Used to transform object, string into an array.
 var transform = function(collection, callback){
   // console.log('collection is',collection);
   var results = [];
   loop(collection, function(element,str){
-    // console.log('Element in collection: ', element,' and str is', str);
+    console.log('Element in collection: ', element,' and str is', str);
     results.push(callback(element,str));
     // console.log(
     //   'We have collected the transformed value: element & str', element,str
@@ -43,7 +43,7 @@ var multByFive = function(number){
 
 var fives = transform(listOfNumbers, multByFive);
 
-console.log(fives);
+console.log('fives is:',fives);
 
 // 3. bestSentenceToUpperCase
 var bestSentence = "This is the best six week course ever!";
@@ -275,14 +275,15 @@ console.log(makeRow(makeArray(10),objToReplace));
 // };
 // 15. makeTicTacToeBoard
 // var anotherMakeArray = new makeArray(4);
-var matrixArray = [];
-var boardArray = [];
+
 var i = 0;
 var makeTicTacToeBoard = function(number){
 	// boardArray.push(
+		var matrixArray = [];
+		var boardArray = [];
 		loop(makeArray(number), function(arr,index){
 			matrixArray.push(objToReplace);
-			// console.log(matrixArray,'matrixArray','index is ',index);
+			console.log('We are inside make tic tac toe',matrixArray,'matrixArray','index is ',index);
 			
 		})
 		while (i < number){
@@ -292,49 +293,130 @@ var makeTicTacToeBoard = function(number){
 	// )
 	return boardArray;
 }
+console.log('next function makeTicTacToeBoard  -----------------------');
 
 var testMatrix = makeTicTacToeBoard(3);
 console.log(testMatrix);
+
 
 //gameCreator
 
 var gameCreator = function(number){
 	var gameObject = {};
-	// console.log('about to call makeTicTacToeBoard(number)');
-	makeTicTacToeBoard(number);
+	console.log('about to call makeTicTacToeBoard(number)');
+	//makeTicTacToeBoard(number);
 	gameObject.gameBoard = testMatrix;
+	//gameObject.gameBoard =  makeTicTacToeBoard(3)
+	gameObject.count = 0;
 	return gameObject;
 };
+console.log('next function gameCreator  -----------------------');
 
 var gameCreatorTest = gameCreator(3);
 console.log('gameCreator will be ',gameCreatorTest);
 
 
-// 16. setXorO 
 
+// 16. setXorO 
+var nCount = 0;
 var setXorO = function(gameObj,coordsArr){
-	var row;
-	var col;
-	loop(gameCreatorTest,function(value,key){
-		loop(value.gameBoard, function(arr,index){
-			row = coords[0];
-			col = coords[1];
-			console.log('arr and index are ', arr,index);
-			if (arr == row){
+	var row = coordsArr[0];
+	var col = coordsArr[1];
+	
+	console.log('START ---- gameObjis:', gameObj,' coords:',coordsArr);
+	nCount = gameObj.count;
+	loop(gameObj,function(value,key){
+		console.log('1ST LOOP using gameObj-----value: ',value,' and key: ',key)
+		// if (key == 0){
+		loop(value[row], function(arr,index){
+			//console.log('key is zero arr and index are ', arr,' indx is ',index);
+			
+			if (index == row){
+				//console.log('should be on row 0 ',arr,'index is',index);
+				//loop(arr,function(value,key){
+				//console.log('value and key are ',value,'key is',key);
 				loop(arr,function(value,key){
-					console.log('value and key are ',value,key);
+					if (key == 'state' && gameObj.count/2 === 0 && value == null){
+						console.log('redy to change state to x');
+						key = 'x';
+						gameObj.count++;
+						console.log(' state should now be x - and it is: ', key);
+					} else if (key == 'state' && value == null && gameObj.count%2 !== 0){
+						console.log('redy to change state to o');
+						key = 'o';
+						gameObj.count++;
+						console.log(' state should now be o, and it is: ', key);
+					} else if (value != null){
+						alert('this square has already been chosen');
+					}
+						
 				})
 			}
 		})
-
 	})
+	console.log('original gameObj is: ',gameObj);
+	return gameObj;
 };
 
-var testSetXorO = setXorO(gameCreatorTest.gameBoard, [0,0]);
-console.log('testSetXorO is ',testSetXorO);
+console.log('next function setXorO  -----------------------');
 
+var myTicTacToeBoard1 = makeTicTacToeBoard(3);
+var gameOne = gameCreator(myTicTacToeBoard1);
+setXorO(gameOne, [0, 0]);
+console.log('FINISHED ---- gameOne.gameBoard should now be ',gameOne.gameBoard);
 
+console.log('next turn -----------------------');
 
+setXorO(gameOne, [0, 2]);
+console.log(gameOne.gameBoard);
+/*
+RESULTS
 
+next function setXorO  -----------------------
+We are inside make tic tac toe [ { state: null } ] matrixArray index is  0
+We are inside make tic tac toe [ { state: null }, { state: null } ] matrixArray index is  1
+We are inside make tic tac toe [ { state: null }, { state: null }, { state: null } ] matrixArray index is  2
+about to call makeTicTacToeBoard(number)
+START ---- gameObjis: { gameBoard:
+   [ [ [Object], [Object], [Object] ],
+     [ [Object], [Object], [Object] ],
+     [ [Object], [Object], [Object] ] ],
+  count: 0 }  coords: [ 0, 0 ]
+1ST LOOP using gameObj-----value:  [ [ { state: null }, { state: null }, { state: null } ],
+  [ { state: null }, { state: null }, { state: null } ],
+  [ { state: null }, { state: null }, { state: null } ] ]  and key:  gameBoard
+redy to change state to x
+ state should now be x - and it is:  x
+1ST LOOP using gameObj-----value:  1  and key:  count
+original gameObj is:  { gameBoard:
+   [ [ [Object], [Object], [Object] ],
+     [ [Object], [Object], [Object] ],
+     [ [Object], [Object], [Object] ] ],
+  count: 1 }
+FINISHED ---- gameOne.gameBoard should now be  [ [ { state: null }, { state: null }, { state: null } ],
+  [ { state: null }, { state: null }, { state: null } ],
+  [ { state: null }, { state: null }, { state: null } ] ]
+next turn -----------------------
+START ---- gameObjis: { gameBoard:
+   [ [ [Object], [Object], [Object] ],
+     [ [Object], [Object], [Object] ],
+     [ [Object], [Object], [Object] ] ],
+  count: 1 }  coords: [ 0, 2 ]
+1ST LOOP using gameObj-----value:  [ [ { state: null }, { state: null }, { state: null } ],
+  [ { state: null }, { state: null }, { state: null } ],
+  [ { state: null }, { state: null }, { state: null } ] ]  and key:  gameBoard
+redy to change state to o
+ state should now be o, and it is:  o
+1ST LOOP using gameObj-----value:  2  and key:  count
+original gameObj is:  { gameBoard:
+   [ [ [Object], [Object], [Object] ],
+     [ [Object], [Object], [Object] ],
+     [ [Object], [Object], [Object] ] ],
+  count: 2 }
+[ [ { state: null }, { state: null }, { state: null } ],
+  [ { state: null }, { state: null }, { state: null } ],
+  [ { state: null }, { state: null }, { state: null } ] ]
 
+Original Object not getting updated despite what logging suggest???
+*/
 
