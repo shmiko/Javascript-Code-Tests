@@ -61,19 +61,19 @@ var makeCheckerBoard = function(number){
 			} else {
 				objToReplace.color = 'black';
 			}
-			console.log('objToReplace.color',objToReplace.color,'objToReplace',objToReplace);
+			// console.log('objToReplace.color',objToReplace.color,'objToReplace',objToReplace);
 			matrixArray.push(objToReplace);
-			console.log('We are inside make tic tac toe',matrixArray,'matrixArray','index is ',index,'arr',arr);
+			// console.log('We are inside make checkerboard',matrixArray,'matrixArray','index is ',index,'arr',arr);
 		})
 		while (i < number){
 			boardArray.push(matrixArray ); //this dosn't work either
 			i++;
 		}
-		console.log('boardArray',boardArray,'boardArray len',boardArray.length);
+		// console.log('boardArray',boardArray,'boardArray len',boardArray.length);
 	return boardArray;
 }
 var testMatrix = makeCheckerBoard(8);
-console.log(testMatrix);
+// console.log(testMatrix);
 
 
 // var checkerBoard = createCheckerBoard(8);
@@ -81,6 +81,36 @@ console.log(testMatrix);
 // console.log(checkerBoard);
 // console.log(checkerBoard[0][0]);
 // console.log(checkerBoard[0][1]);
+
+
+var board = _.range(num);
+		_.each(board,function(space,index,board){
+			row = _.map(_.range(num), function(val){
+				return gameLogic.createSquare(index.toString() + val.toString());
+			});
+			board[index] = row;
+		});
+		return board;
+var i = 0;
+var makeCheckerBoard2 = function(number){
+	var boardArray2 = [];
+	_.each(_.range(number),function(index,board){
+		_.map(_.range(num), function(val,index){
+			if(index % 2 === 0){
+				objToReplace.color = 'red';
+			} else {
+				objToReplace.color = 'black';
+			}
+			console.log('objToReplace.color:',objToReplace.color,'objToReplace:',objToReplace);
+			boardArray2.push(objToReplace);
+		});
+	});
+	console.log('boardArray',boardArray2,'boardArray len',boardArray2.length);
+	return boardArray2;
+}
+var testMatrix2 = makeCheckerBoard2(8);
+console.log('testMatrix2:',testMatrix2);
+
 
 
 
@@ -135,7 +165,7 @@ var createBoard2 = function(num){
 	});
 };
 
-console.log('createBoard2',createBoard2(8));
+// console.log('createBoard2',createBoard2(8));
 
 var arrOfNumbers = [1,2,3,4,5];
 
@@ -198,4 +228,4 @@ var createBoard3 = function(num){
 	},[]);
 };
 
-console.log('createBoard3',createBoard3(8));
+// console.log('createBoard3',createBoard3(8));
