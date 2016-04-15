@@ -1,5 +1,134 @@
-<html>
-  <body></body>
-  <script src="objects_test.js"></script>
-  <!-- <script src="script.js"></script> -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <title>Weather Grabber</title>
+        <link rel="stylesheet" type="text/css" href="weatherGrabber.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    </head>
+	<body>
+		<nav class="navbar navbar-info navbar-fixed-top">
+			<p class="navbar-text"><h2>Weather Search with Grab Ya Weather</h2></p>
+		</nav>
+		</br>
+		<div class="page-header">
+			<!-- <div class="divider"></div> -->
+				<!-- <h4 class="pull-right">Selections</h4> -->
+			<!-- <div class="divider"></div> -->
+		</div>
+
+		<div class="container">
+			<!-- <div class="panel panel-info"> -->
+				<div class="row">
+			        <div class="col-xs-12 col-md-12 col-sm-12">
+			        	<label for="mainFrom" id="mainFormLabel">Selections</label>
+			        	<form class="form-horizontal" id="mainForm">
+							<div class="form-group">
+								<!-- <p>Get Weather for US ZipCode</p> -->
+								<!-- <p class="help-block">Get weather for Country/City</p> -->
+								<div class="row">
+									<div class="col-sm-6 col-md-6 col-lg-6">
+										<select id="countrySelect" class="form-control">
+											<option>Choose Country</option>
+											<option>Australia</option>
+											<option>China</option>
+											<option>Japan</option>
+											<option>UK</option>
+											<option>USA</option>
+											<option>Russia</option>
+								        </select>
+										<label for="city">Country/State/City</label>
+										<input type="text" class="formControl" id="state" placeholder="Enter State" name="state" >
+										<input type="text" class="formControl" id="city" placeholder="Enter City" name="city" >
+									<!-- </div> -->
+									<!-- <span class="input-group-addon">Get Weather for US ZipCode</span> -->
+									<!-- <div class="col-sm-4"> -->
+										
+									</div>
+									<div class="col-sm-6 col-md-6 col-lg-6">
+										<label for="zipCode">US ZipCode</label>
+										<input type="text" class="formControl" id="zipCode" placeholder="Enter US Zip" name="zipCode" >
+										
+									</div>
+									 <form role="mainForm" id="clear">
+							            
+							            <button id="clearButton" class="btn btn-info btn-sm clearButton" type="submit">Clear</button>
+							            
+							        </form>
+								</div>
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-lg-12">
+									<form role="mainForm" id="weather">
+										<button id="getIt" type="submit" class="btn btn-info btn-lg btn-block">Get It</button>
+									</form>
+									</div>
+								</div>
+							</div>
+						</form>
+						
+					</div>
+					<div class="col-sm-12 col-md-12 col-sm-12">
+					<div class='table-responsive'>
+			            <table class='table'>
+			                <thead>
+			                    <tr>
+			                        <th>City</th>
+			                        <th>Country</th>
+			                        <th>Zip</th>
+			                        <th>Conditions</th>
+			                        <th>Temperature</th>
+			                        <th>Humidity</th>
+			                        <th>Wind</th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+			                    <tr>
+			                        <td id="cityResults"></td>
+			                        <td id="countryResults"></td>
+			                        <td id="zipResults"></td>
+			                        <td id="conditionsResults"></td>
+			                        <td id="temperatureResults"></td>
+			                        <td id="humidityResults"></td>
+			                        <td id="windResults"></td>
+			                    </tr>
+			                </tbody>
+			            </table>
+			        </div>
+			      
+			        <div class='table-responsive'>
+			            <p>Today's Forecast</p>
+			            <table class="table" id=" ">
+			                <thead>
+			                	<tr>
+			                		<th>Time</th>
+			                        <th>Day</th>
+			                        <th>forecast</th>
+			                	</tr>
+			                </thead>
+			                <tbody>
+			                    <tr>
+
+			                    </tr>
+			                </tbody>
+			            </table>
+			        <!-- </div>
+					
+						<div id="weatherResults"></div>
+						
+					</div>
+				</div>
+			<!-- </div> -->
+			<div class="divider"></div>
+		</div>
+		<footer class="footer" role="footer" aria-label="footer">
+	    	<div class="container">
+	            <!-- <p class="text-center"><strong>Last Updated:</strong><span id="myTime"></span></p> -->
+	            <div class="text-center">Written by Paul Jones</div> 
+		    </div>
+	    </footer>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	    <script src="assets/weatherGrabber.js"></script>
+	</body>
 </html>
