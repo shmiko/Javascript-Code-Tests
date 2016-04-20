@@ -5,19 +5,6 @@ function getStocksOver(stocks,minPrice){
 };
 
 
-//this is unused but show how the predicate is used with filter
-// Array.prototype.filter = function (predicate) {
-// 	 var results = [];
-// 	 this.forEach(function(item){
-// 	 	if (predicate(item)){
-// 	 		results.push(item);
-// 	 	}
-// 	 });
-
-
-
-// 	 return results;
-// };
 
 var expensiveStocks = getStocksOver(
 	[
