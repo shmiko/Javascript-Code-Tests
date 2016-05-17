@@ -13,5 +13,6 @@ function longest_palindromic_substring(str) {
         }
     }
 }
+...
 
 longest_palindromic_substring('bobcat');
