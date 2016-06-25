@@ -4,12 +4,12 @@ function Stack(){
 };
 
 var data;
-console.log("this._top is: ",this._top);
+// console.log("this._top is: ",this.  );
 
 Stack.prototype.push = function(data){
 	console.log("passed in data is: ",data);
 	this._top++;
-	this._values[this._top] = data;
+	this._value[this._top] = data;
 };
 
 Stack.prototype.pop = function(){
@@ -17,10 +17,10 @@ Stack.prototype.pop = function(){
 		return null;
 	}
 
-	var topElement = this._values[this._top];
+	var topElement = this._value[this._top];
 	this._top--;
 
-	this._values.length--;
+	this._value.length--;
 
 	return topElement;
 };
@@ -29,7 +29,7 @@ Stack.prototype.peek = function(){
 	if(this._top < 0){
 		return null;
 	}
-	return this._values[this._top];
+	return this._value[this._top];
 };
 
 var stack = new Stack();
