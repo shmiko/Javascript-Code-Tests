@@ -55,3 +55,25 @@ function destroyer(arr) {
 }
 
 destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+return str.replace(/(.)\1*/g, function(seq, p1){return seq.length.toString() + p1});
+var num = "1";
+for (var i = 10; i > 0; i--) {
+    num = LookAndSay(num);
+}
+
+function lookAndSay(num) {
+  var look = /(1+|2+|3+)/g;
+  function say(match, position) {
+    return match.length.toString() + match.substring(0, 1);
+  }
+  
+  return num.toString().replace(look, say);
+}
+
+
+// Usage
+var num = 1;
+for (var i:int = 0; i < 20; i++) {
+    num = lookAndSay(num);
+    console.log(num);
+}
