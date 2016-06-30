@@ -48,6 +48,8 @@ log(Cat.prototype); //Cat{}
 log(fluffy.__proto__);//Cat{} instance of Cat
 //same
 //eded
+
+
 log(Cat.prototype === fluffy.__proto__); //returns true
 
 //change Cats prototype will reflect in fluffy proto
