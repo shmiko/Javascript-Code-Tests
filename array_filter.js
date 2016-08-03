@@ -14,6 +14,8 @@ var expensiveStocks = getStocksOver(
 	],
 	150.00);
 
+//tests
+
 console.log(JSON.stringify(expensiveStocks));
 
 
