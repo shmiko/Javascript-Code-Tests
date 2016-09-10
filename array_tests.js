@@ -46,7 +46,7 @@ var fluffy = new Cat('Fluffy','White');
 
 log(Cat.prototype); //Cat{}
 log(fluffy.__proto__);//Cat{} instance of Cat
-same
+// same
 //eded
 
 
