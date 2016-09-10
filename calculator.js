@@ -424,7 +424,7 @@ var advancedPythagoreanCheck = function(int1,int2,int3){
 
 //tests
 var truthy = advancedPythagoreanCheck(3, 4, 5);
-// console.log(truthy);
+console.log(truthy);
 var alsoTruthy = advancedPythagoreanCheck(5, 3, 4);
 console.log(alsoTruthy);
 var falsy = advancedPythagoreanCheck(3, 4, 6);
