@@ -419,6 +419,7 @@ var advancedPythagoreanCheck = function(int1,int2,int3){
   //I refactored the original PythagoreanCheck to be more flexible
   //using global var
   pythagorean(int1,int2,int3);
+  console.log(trueOrFalse);
   return trueOrFalse;
 };
 
