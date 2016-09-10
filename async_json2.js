@@ -9,7 +9,7 @@ function readJSONSync(filename, callback){
   })
 };
 
-// readJSONSync(js_promises_test.js);
+readJSONSync(js_promises_test.js);
 
 //conflates the input with the output
 //doesn't work with control flow primitives
