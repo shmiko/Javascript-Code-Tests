@@ -405,7 +405,7 @@ var testCostSplitter = costSplitter([ { cost: 23, friend: 'Lucy', rating: 'good!
   { cost: 20, friend: 'Ross', rating: 'good!' },
   { cost: 20, friend: 'Glen', rating: 'poor :(' },
   { cost: 23, friend: 'Paul', rating: 'fantastic!' } ]); 
-console.log('Split total cost by friends are ',testCostSplitter); 
+// console.log('Split total cost by friends are ',testCostSplitter); 
 //result is Split total cost by friends are  [ { name: 'Lucy', cost: 27.14 },
 //  { name: 'John', cost: 28.32 },
 //  { name: 'Ross', cost: 23.6 },
