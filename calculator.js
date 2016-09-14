@@ -430,6 +430,6 @@ var truthy = advancedPythagoreanCheck(3, 4, 5);
 var alsoTruthy = advancedPythagoreanCheck(5, 3, 4);
 // console.log(alsoTruthy);
 var falsy = advancedPythagoreanCheck(3, 4, 6);
-console.log(falsy);
+// console.log(falsy);
 
 }());
