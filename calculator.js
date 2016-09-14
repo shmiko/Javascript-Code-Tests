@@ -412,7 +412,7 @@ console.log('Split total cost by friends are ',testCostSplitter);
 //  { name: 'Glen', cost: 22.4 },
 //  { name: 'Paul', cost: 28.06 } ]
 
-//another test
+//another test to do
 // 26. advancedPythagoreanCheck
 
 var advancedPythagoreanCheck = function(int1,int2,int3){
