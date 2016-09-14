@@ -246,7 +246,7 @@ var receiptMaker = function(num){
 
 // DO NOT TOUCH, use this to test your `calculateFinalTotal` function.
 var receiptsArray = receiptMaker(5);
-console.log('receiptsArray is ',receiptsArray);
+// console.log('receiptsArray is ',receiptsArray);
 
 
 
