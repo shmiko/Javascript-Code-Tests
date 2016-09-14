@@ -305,7 +305,7 @@ function updateFriendsCollectionCheck (friendListArr, friendArg) {
         bExists = false;
     } else if (friendListArr.indexOf(friendArg) > -1) {
         bExists = true;
-        console.log(friendArg + ' already exists in the friendListArr collection.');
+        // console.log(friendArg + ' already exists in the friendListArr collection.');
     }
     return bExists;
 };
