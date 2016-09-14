@@ -269,7 +269,7 @@ var calculateFinalTotal = function(arr){
       //   subtotal +=  sum(multiply(divide(22,100), arr[i].cost),arr[i].cost);
       //   console.log(subtotal);
       // }
-        console.log(subtotal);
+        // console.log(subtotal);
         //finalTotalsArray.push
       //refactoring
         var cost = arr[i].cost;
