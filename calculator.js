@@ -340,7 +340,7 @@ var calculateFinalTip = function(arr){
     } else if (arr.rating === "fantastic!"){
       friendSubTotal +=  sum(multiply(divide(22,100), arr.cost),arr.cost);
     }
-    console.log('friend and tip is ',arr.friend + "," + friendSubTotal);
+    //console.log('friend and tip is ',arr.friend + "," + friendSubTotal);
     return arr.friend + "," + friendSubTotal;
 };
 //This will create the friends array for the costSplitter function, 
