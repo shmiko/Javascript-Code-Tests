@@ -291,7 +291,7 @@ var testCalcFinal1 = calculateFinalTotal([ { cost: 29, serviceRating: 'good!' },
   { cost: 28, serviceRating: 'poor :(' }, //12% = 31.36
   { cost: 32, serviceRating: 'poor :(' } ]); //12% = 35.84
 var testCalcFinal = calculateFinalTotal(receiptsArray); //12% = 35.84  
-console.log('testCalcFinal is ',testCalcFinal); //34.22 + 29.5 + 31.36 + 31.36 + 35.84 = 162.28 correct
+// console.log('testCalcFinal is ',testCalcFinal); //34.22 + 29.5 + 31.36 + 31.36 + 35.84 = 162.28 correct
 
 
 
