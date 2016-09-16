@@ -271,6 +271,7 @@ var calculateFinalTotal = function(arr){
       // }
         // console.log(subtotal);
         //finalTotalsArray.push
+        ..//
       //refactoring
         var cost = arr[i].cost;
         var serviceRating = arr[i].serviceRating;
