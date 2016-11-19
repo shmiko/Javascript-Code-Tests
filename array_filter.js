@@ -30,7 +30,7 @@ function destroyer(arr) {
   newArray = arg0;
   var len = newArray.length;
   var el;
-  //console.log(len,' is length of newArray');
+  //console.log(len,' is length of newArray'); ok this 
   for (var i = 0; i < len;i++){
     //if (arr[0].indexof(arr[1])){
       //test
