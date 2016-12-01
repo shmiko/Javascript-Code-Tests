@@ -19,6 +19,8 @@ var logName = function(lang1, lang2) {
     
 }
 
+
+//...
 var logPersonName = logName.bind(person);
 logPersonName('en');
 
