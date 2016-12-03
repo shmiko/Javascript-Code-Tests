@@ -20,7 +20,7 @@ var logName = function(lang1, lang2) {
 }
 
 
-//...tests
+//...tests for apply 
 var logPersonName = logName.bind(person);
 logPersonName('en');
 
