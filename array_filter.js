@@ -44,7 +44,7 @@ function destroyer(arr) {
       if (index){
         console.log('index1----args[i] in torf',newArray[i],'arg1:',arg1,'index is true',index);
         newArray.splice(i,1);
-        //delete newArray[i];
+        //delete newArray[i];;
       }
       if (index2){
         console.log('index2-----args[i] in torf',newArray[i],'arg2:',arg2,'index is true',index);      
