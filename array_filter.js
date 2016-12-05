@@ -20,7 +20,7 @@ console.log(JSON.stringify(expensiveStocks));
 
 
 function destroyer(arr) {
-  // Remove all the values and reset the array
+  // Remove all the values
 
   var newArray = [];
   var arg1;
