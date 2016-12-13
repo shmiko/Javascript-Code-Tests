@@ -51,7 +51,7 @@ function destroyer(arr) {
         newArray.splice(i,1);
         //delete newArray[i]; works
       }
-    console.log('newArray returned is:',newArray);
+    //console.log('newArray returned is:',newArray);
       
     //}
   }
