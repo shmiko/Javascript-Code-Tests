@@ -42,7 +42,7 @@ function destroyer(arr) {
       var index = (el===arg1);
       var index2 = (el===arg2);
       if (index){
-        console.log('index1----args[i] in torf',newArray[i],'arg1:',arg1,'index is true',index);
+        //console.log('index1----args[i] in torf',newArray[i],'arg1:',arg1,'index is true',index);
         newArray.splice(i,1);
         //delete newArray[i];;
       }
