@@ -54,10 +54,8 @@ function destroyer(arr) {
     console.log('newArray returned is:',newArray);
       
     //}
-
-    
   }
-  return 'newArray returned is:' + newArray;
+  return 'newArray returned is:' + newArray; ///lo
 }
 
 destroyer([1, 2, 3, 1, 2, 3], 2, 3);
