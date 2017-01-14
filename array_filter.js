@@ -54,6 +54,8 @@ function destroyer(arr) {
     console.log('newArray returned is:',newArray);
       
     //}
+
+    
   }
   return 'newArray returned is:' + newArray;
 }
