@@ -34,4 +34,4 @@ console.log(prepend(10, prepend(20, null)));
 console.log(nth(arrayToList([10, 20, 30]), 1));
 // → 20
 
-//works
+//works fine
