@@ -14,7 +14,7 @@ var expensiveStocks = getStocksOver(
 	],
 	150.00);
 
-//tests
+//tests done abstraction
 
 console.log(JSON.stringify(expensiveStocks));
 
@@ -30,7 +30,7 @@ function destroyer(arr) {
   newArray = arg0;
   var len = newArray.length;
   var el;
-  //console.log(len,' is length of newArray'); ok this 
+  //console.log(len,' is length of newArray'); 
   for (var i = 0; i < len;i++){
     //if (arr[0].indexof(arr[1])){
       //testing
@@ -42,12 +42,13 @@ function destroyer(arr) {
       var index = (el===arg1);
       var index2 = (el===arg2);
       if (index){
-        //console.log('index1----args[i] in torf',newArray[i],'arg1:',arg1,'index is true',index);
+        console.log('index1----args[i] in torf',newArray[i],'arg1:',arg1,'index is true',index);
         newArray.splice(i,1);
         //delete newArray[i];;
+        //testing delete
       }
       if (index2){
-        console.log('index2-----args[i] in torf',newArray[i],'arg2:',arg2,'index is true',index);      
+        // console.log('index2-----args[i] in torf',newArray[i],'arg2:',arg2,'index is true',index);      
         newArray.splice(i,1);
         delete newArray[i]; works
       }
@@ -55,7 +56,7 @@ function destroyer(arr) {
       
     //}
   }
-  return 'newArray returned is:' + newArray;
+  return 'newArray returned is:' + newArray; ///lo
 }
 
 destroyer([1, 2, 3, 1, 2, 3], 2, 3);
